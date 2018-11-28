@@ -2,11 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
-  return (
+  let nav = props.user ?
     <div>
-      <Link to="/login" className='NavBar-link'>LOG IN</Link>
+      <Link to='/high-scores' >HIGH SCORES</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <Link to='' onClick={props.handleLogout}>LOG OUT</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <span>WELCOME, {props.user.name}</span>
+    </div>
+    :
+    <div>
+      <Link to='/login'>LOG IN</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/signup" className='NavBar-link'>SIGN UP</Link>
+      <Link to='/signup'>SIGN UP</Link>
+    </div>;
+
+  return (
+    <div className='NavBar'>
+      {nav}
     </div>
   );
 };

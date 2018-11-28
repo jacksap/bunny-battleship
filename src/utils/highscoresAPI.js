@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/topscores/';
+const BASE_URL = '/api/highscores/';
 
 function index() {
   return fetch(BASE_URL, getAuthRequestOptions('GET'))
