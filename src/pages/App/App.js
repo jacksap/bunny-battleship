@@ -5,8 +5,25 @@ import {
   Route
 } from 'react-router-dom';
 import './App.css';
+import SignupPage from '../SignupPage/SignupPage';
+import LoginPage from '../LoginPage/LoginPage';
+import userService from '../../utils/userService';
 
 class App extends Component {
+  
+
+/*---------- Helper Methods ----------*/
+
+/*---------- Callback Methods ----------*/
+
+
+/*---------- Lifecycle Methods ----------*/
+
+componentDidMount() {
+  let user = userService.getUser();
+    this.setState({user});
+}
+
   render() {
     return (
       <div className="App">
