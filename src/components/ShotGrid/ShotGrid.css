@@ -1,0 +1,15 @@
+.ShotGrid {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    position: absolute;
+    top: 28vh;
+    right: 46.7vw;
+    width: 30vh;
+    height: 30vh;
+}
+.Plot {
+    z-index: 50;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid #ff5919;
+}

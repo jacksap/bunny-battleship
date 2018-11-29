@@ -2,6 +2,7 @@ body {
   background-image: url('https://i.imgur.com/Ae3IuxZ.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-color: #428200;
+  font-family: 'Patrick Hand', cursive;
 }
