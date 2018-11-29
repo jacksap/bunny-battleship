@@ -10,6 +10,8 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
 import userService from '../../utils/userService';
+import socket from '../../utils/socket';
+
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +40,11 @@ handleSignuporLogin = () => {
 componentDidMount() {
   let user = userService.getUser();
   this.setState({user});
+  socket.on('game', (game) => {
+    const newGames = [...this.state.games];
+    newGames.push(game);
+    this.setState({ games: newGames });
+  });
 }
 
   render() {
