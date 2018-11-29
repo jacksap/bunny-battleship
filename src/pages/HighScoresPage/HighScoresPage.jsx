@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import highscoresAPI from '../../utils/highscoresAPI';
 import {Link} from 'react-router-dom';
+import './HighScoresPage.css';
+
 
 class HighScoresPage extends Component {
   constructor() {
