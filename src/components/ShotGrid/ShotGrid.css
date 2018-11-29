@@ -13,3 +13,13 @@
     background: rgba(255,255,255,0.2);
     border: 1px solid #ff5919;
 }
+.Plot:hover {
+    background: rgba(0,0,0,0.2);
+}
+.ShotHeader {
+    color: white;
+    position: relative;
+    top: 15vh;
+    right: 13vw;
+
+}

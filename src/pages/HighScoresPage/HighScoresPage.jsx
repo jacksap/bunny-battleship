@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import highscoresAPI from '../../utils/highscoresAPI';
 import {Link} from 'react-router-dom';
 import './HighScoresPage.css';
+import NavBar from '../../components/NavBar/NavBar';
 
 
 class HighScoresPage extends Component {
@@ -21,6 +22,7 @@ class HighScoresPage extends Component {
       <div>
         <header>High Scores</header>
         <Link to='/'>RETURN</Link><br />
+        <NavBar />
       </div>
     );
   }
