@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 const NavBar = (props) => {
   let nav = props.user ?
     <div>
-      <Link to='/high-scores' >HIGH SCORES</Link>
+      <Link to='/high-scores'>High Scores</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <Link to='' onClick={props.handleLogout}>LOG OUT</Link>
+      <Link to='' onClick={props.handleLogout}>Log Out</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span>WELCOME, {props.user.name}</span>
+      <span>Welcome, {props.user.name}</span>
     </div>
     :
     <div>
-      <Link to='/login'>LOG IN</Link>
+      <Link to='/login'>Log In</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to='/signup'>SIGN UP</Link>
+      <Link to='/signup'>Sign Up</Link>
     </div>;
 
   return (
