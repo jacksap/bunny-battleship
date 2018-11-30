@@ -20,7 +20,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      game: null
+      gameReady: false,
+      gameStart: false,
     };
   }
 
@@ -68,10 +69,54 @@ snedGameData = () => {
 componentDidMount() {
   let user = userService.getUser();
   this.setState({user});
+
   if (user) socket.emit('getActiveGame', user._id);
-  socket.on('gameData', (game) => {
-    this.setState({ game });
-  });
+    socket.on('gameData', (game) => {
+      this.setState({ game });
+    });
+    
+    socket.on('gameReady', (game) => {
+      this.setState({
+        gameReady: game
+      });
+      console.log('gameReady', game);
+    });
+
+    // Listen from server when client create a room (Ourself);
+
+    socket.on('newGameCreated', (game) => {
+      this.setState({
+        roomCreated: game._id
+      });
+    });
+
+    // Listen from server when client successfully join a room;
+
+    socket.on('playerJoined', game => {
+      this.setState({
+        roomId: game._Id,
+      });
+      console.log('New Player Joined');
+    });
+
+    // Listen from server to validate the roomId
+
+    socket.on('validateRoom', (flag) => {
+      if (flag.valid) {
+      } else {
+        console.log('not valid');
+      }
+    });
+
+    // Listen from Server when host start the game
+
+    socket.on('gameStartedByHost', (game) => {
+      console.log('gameStart:', game.gameStart);
+      this.setState({
+        gameStart: game.gameStart
+      });
+    });
+  
 }
 
   render() {

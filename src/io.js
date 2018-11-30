@@ -35,6 +35,32 @@ module.exports = {
     });
   })
 },
+  joinRoom: function(game) {
+    let room = gameSocket.nsp.adapter.rooms[game.gameId];
+
+    if (room !== undefined) {
+      // no one
+      if (room.length <= 1) {
+        this.join(game.gameId);
+        io.sockets.in(game.gameId).emit('playerJoined', game);
+      }
+    }
+  },
+
+// Check if the room is available on socket
+  checkRoom: function(room) {
+  let room = gameSocket.nsp.adapter.rooms[roomId];
+
+  if (!room) {
+    this.emit('validateRoom', {valid: false});
+  } else {
+    if (room.length > 1) {
+      this.emit('validateRoom', {valid: false});
+    } else {
+      this.emit('validateRoom', {valid: true});
+    }
+  }
+},
 
 getIo: function() {return io}
 
