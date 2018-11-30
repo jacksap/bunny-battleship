@@ -2,12 +2,3 @@
     display: flex;
     justify-content: flex-end;
 }
-.NavExtension {
- position: relative;
- bottom: 1.22vh;
-}
-@media screen and (max-width: 1000px) {
-    .NavExtension {
-        display: none;
-    }
-}

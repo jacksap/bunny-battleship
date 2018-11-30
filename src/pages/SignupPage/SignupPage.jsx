@@ -25,6 +25,7 @@ class SignupPage extends Component {
       </div>
     );
   }
+  
 };
 
 export default SignupPage;

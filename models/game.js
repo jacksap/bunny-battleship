@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
-var User = require('../models/user');
 
 var playerSchema = mongoose.Schema({
     id: String,
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    turn: Boolean
+    name: String
 });
 
 var gameSchema = new mongoose.Schema({
