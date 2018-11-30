@@ -1,7 +1,8 @@
 const Game = require('../models/game');
 
 let io;
-var games ={}; 
+var games = {}; 
+
 module.exports = {
 
   init: function(httpServer) {
@@ -47,7 +48,7 @@ module.exports = {
         io.emit('gameData', game);
         game.save();
       });
-      
+
     });
   },
 

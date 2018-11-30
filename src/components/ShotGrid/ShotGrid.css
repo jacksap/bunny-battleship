@@ -16,10 +16,3 @@
 .Plot:hover {
     background: rgba(0,0,0,0.2);
 }
-.ShotHeader {
-    color: white;
-    position: relative;
-    top: 15vh;
-    right: 13.5vw;
-
-}

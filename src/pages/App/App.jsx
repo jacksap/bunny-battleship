@@ -20,28 +20,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameReady: false,
-      gameStart: false,
       game: null
     };
   }
 
-/*----- Create/Join Game -----*/
+/*----- Create Game -----*/
 
   handleCreateGameClick = (e) => {
     e.preventDefault();
     gameService.createGame(this.state.user);
   }
 
-  handleJoinGameClick = (e) => {
-    e.preventDefault();
-    gameService.joinGame(this.state.user);
-   }
 
 /*---------- Helper Methods ----------*/
 
 
+
 /*---------- Callback Methods ----------*/
+
   handlePlantSelection = () => {
     alert('Plant!');
   }
@@ -72,9 +68,10 @@ class App extends Component {
     this.setState({user});
 
     if (user) socket.emit('getActiveGame', user._id);
-      socket.on('gameData', (game) => {
-        this.setState({ game });
-      });
+
+    socket.on('gameData', (game) => {
+      this.setState({ game });
+    });
   }
 
   render() {
@@ -82,10 +79,8 @@ class App extends Component {
     let page;
 
      if (game && game.players.length === 2 && game.garden_state) {
-      // renders when there are 2 players and run has run out for both of them
       page = <HighScoresPage />
     } else if (game && game.players.length === 2) {
-      // renders when there are 2 players and now the game is in play
       page = <GameBoard
         user={this.state.user}
         handleLogout={this.handleLogout}
@@ -96,16 +91,14 @@ class App extends Component {
     } else if (game && game.players.length === 1) {
       page = <WaitingPage game={this.state.game} />
     } else {
-      // no game
       page = <GamePage
         user={this.state.user}
         handleLogout={this.handleLogout} 
         handleCreateGameClick={this.handleCreateGameClick}
         handleJoinGameClick={this.handleJoinGameClick}
       />;
-      // add code to input join game in frontpage
-      // code is game id and 2nd player user id
     }
+
     return (
       <div className="App">
           <Switch>

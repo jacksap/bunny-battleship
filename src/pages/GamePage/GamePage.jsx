@@ -28,10 +28,8 @@ class GamePage extends Component {
                     <Link onClick={this.props.handleCreateGameClick} to='/'>CREATE GAME</Link>
                 </div>
                 <div>
-                    <form onSubmit={this.props.handleJoinGameClick}>
                     <input type="text" placeholder="Game Code" name="gameCode" value={this.state.gameCode} onChange={this.handleChange}/>
                     <button onClick={this.handleJoinClick}> JOIN GAME </button>
-                    </form>
                 </div>
                 <div>
                     <Link to='' onClick={this.props.handleLogout}> LOG OUT </Link>

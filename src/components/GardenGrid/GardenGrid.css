@@ -16,9 +16,3 @@
 .Plant:hover {
     background: rgba(0,0,0,0.2);
 }
-.GardenHeader {
-    color: white;
-    position: relative;
-    top: 15vh;
-    right: 19vw;
-}
