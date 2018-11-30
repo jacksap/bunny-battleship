@@ -1,20 +1,38 @@
 import React from 'react';
-import NavBar from '../../components/NavBar/NavBar';
-import ChatBar from '../../components/ChatBar/ChatBar'
-import GardenGrid from '../../components/GardenGrid/GardenGrid'
-import ShotGrid from '../../components/ShotGrid/ShotGrid'
 import './GamePage.css';
+import { Link } from 'react-router-dom';
 
+const GamePage = props => {
+    let GamePage = props.user ?
+        <div>
+            <div>
+                <Link onClick={props.handleCreateGameClick} to='/'>CREATE GAME</Link>
+            </div>
+            <form onSubmit={props.handleJoinGameClick}>
+            <button>JOIN GAME</button>
+            <input type="text" placeholder="Game Code" name="gameCode"/>
+            </form>
+            <div>
+                <Link to='' onClick={props.handleLogout}>LOG OUT</Link>
+            </div>
+        </div>
+        :
+        <div>
+            <div>
+                <div>
+                    <Link to='/login'>LOG IN</Link>
+                </div>
+                <div>
+                    <Link to='/signup'>SIGN UP</Link>
+                </div>
+            </div>
+        </div>;
 
-const GamePage = (props) => (
+   return (
     <div className="GamePage">
-         <NavBar user={props.user} handleLogout={props.handleLogout} />
-         <GardenGrid handlePlantSelection={props.handlePlantSelection}/>
-         <ShotGrid handleShotSelection={props.handleShotSelection}/>
-         <img src='https://i.imgur.com/mh1Uefs.png' alt="navExtension" className="NavExtension"></img>
-         <ChatBar user={props.user}/>
-         <button onClick={props.handleCreateGameClick}>START GAME</button>
+        {GamePage}
     </div>
 );
+}
 
 export default GamePage;

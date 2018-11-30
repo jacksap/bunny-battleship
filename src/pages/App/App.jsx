@@ -6,9 +6,11 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import GamePage from '../GamePage/GamePage';
+import GameBoard from '../../components/GameBoard/GameBoard';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
+import WaitingPage from '../WaitingPage/WaitingPage';
 import userService from '../../utils/userService';
 import gameService from '../../utils/gameService';
 import socket from '../../utils/socket';
@@ -22,10 +24,17 @@ class App extends Component {
     };
   }
 
+/*----- Create/Join Game -----*/
+
   handleCreateGameClick = (e) => {
     e.preventDefault();
     gameService.createGame(this.state.user);
   }
+
+  handleJoinGameClick = (e) => {
+    e.preventDefault();
+    gameService.joinGame(this.state.user);
+   }
 
 /*---------- Helper Methods ----------*/
 
@@ -66,17 +75,38 @@ componentDidMount() {
 }
 
   render() {
+    let game = this.state.game;
+    let page;
+     if (game && game.players.length === 2 && game.garden_state) {
+      // renders when there are 2 players and run has run out for both of them
+      page = <HighScoresPage />
+    } else if (game && game.players.length === 2) {
+      // renders when there are 2 players and now the game is in play
+      page = <GameBoard
+        user={this.state.user}
+        handleLogout={this.handleLogout}
+        handleShotSelection={this.handleShotSelection}
+        handlePlantSelection={this.handlePlantSelection}
+        handleCreateGameClick={this.handleCreateGameClick}
+      />
+    } else if (game && game.players.length === 1) {
+      page = <WaitingPage />
+    } else {
+      // no game
+      page = <GamePage
+        user={this.state.user}
+        handleLogout={this.handleLogout} 
+        handleCreateGameClick={this.handleCreateGameClick}
+        handleJoinGameClick={this.handleJoinGameClick}
+      />;
+      // add code to input join game in frontpage
+      // code is game id and 2nd player user id
+    }
     return (
       <div className="App">
           <Switch>
           <Route exact path='/' render={() =>
-              <GamePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-                handleShotSelection={this.handleShotSelection}
-                handlePlantSelection={this.handlePlantSelection}
-                handleCreateGameClick={this.handleCreateGameClick}
-              />
+          page
             }/>
           <Route exact path='/signup' render={(props) => 
               <SignupPage
