@@ -36,7 +36,7 @@ module.exports = {
   })
 },
   joinRoom: function(game) {
-    let room = gameSocket.nsp.adapter.rooms[game.gameId];
+    let room = io.sockets.adapter.rooms[game._id];
 
     if (room !== undefined) {
       // no one
@@ -49,7 +49,7 @@ module.exports = {
 
 // Check if the room is available on socket
   checkRoom: function(room) {
-  let room = gameSocket.nsp.adapter.rooms[roomId];
+  let room = io.sockets.adapter.rooms[game._id];
 
   if (!room) {
     this.emit('validateRoom', {valid: false});
