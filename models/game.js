@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var veggies = require('../config/game/veggies');
 
 var playerSchema = mongoose.Schema({
     id: String,
