@@ -9,7 +9,7 @@ require('./config/database');
 
 var app = express();
 var httpServer = http.Server(app);
-require('./src/io').init(httpServer);
+require('./io').init(httpServer);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,7 +21,6 @@ app.use(require('./config/auth'));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/highscores', require('./routes/api/highscores'));
 
 
 // The following "catch all" route (note the *)is necessary

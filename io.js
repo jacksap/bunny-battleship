@@ -1,4 +1,5 @@
-const Game = require('../models/game');
+const Game = require('./models/game');
+const grid = require('./config/game/grid');
 
 let io;
 var games = {}; 
@@ -27,10 +28,13 @@ module.exports = {
         game.players.push({
           name: user.name,
           id: user._id,
+          grids: grid.makeGameGrids()
+
         });
         game.save(function(err) {
           socket.gameId = game.id;
           socket.join(game.id);
+          // initialize all of the game doc's state
           io.to(game.id).emit('gameData', game);
           games[game._id] = game;
         });
@@ -41,11 +45,12 @@ module.exports = {
         var game = games[gameCode];
         game.players.push({
           name: user.name,
-          id: user.id
+          id: user.id,
+          grids: grid.makeGameGrids()
         });
         console.log(game);
         socket.join(gameCode);
-        io.emit('gameData', game);
+        io.to(game.id).emit('gameData', game);
         game.save();
       });
 
