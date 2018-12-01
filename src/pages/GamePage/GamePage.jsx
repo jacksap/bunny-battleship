@@ -27,6 +27,9 @@ class GamePage extends Component {
             orientation: 'horizontal',
             gameCode: ''
     }
+        this.socket.on('update game state', (data) =>{
+        this.handleGameUpdate(data);
+        });
     }
     
     /*--------Event Handlers------------*/
