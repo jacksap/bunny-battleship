@@ -5,7 +5,8 @@ var playerSchema = mongoose.Schema({
     name: String,
     grids: [mongoose.Schema.Types.Mixed],
     turnNo: 0,
-    plantedVeggies: [mongoose.Schema.Types.Mixed] 
+    plantedVeggies: [mongoose.Schema.Types.Mixed], 
+    chosenVeggies: [mongoose.Schema.Types.Mixed] 
 });
 
 var gameSchema = new mongoose.Schema({

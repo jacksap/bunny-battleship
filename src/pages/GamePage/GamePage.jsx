@@ -7,9 +7,29 @@ class GamePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+        game: {
+            player0: {
+                id: null,
+                grids: {
+                gardenGrid: [],
+                snackGrid: []
+                }
+            },
+            player1: {
+                id: null,
+                grids: {
+                gardenGrid: [],
+                snackGrid: []
+                }
+            }
+            },
+            selectedVeggie: '',
+            orientation: 'horizontal',
             gameCode: ''
-        }
     }
+    }
+    
+    /*--------Event Handlers------------*/
 
     handleChange = (e) => {
         this.setState({
@@ -19,6 +39,45 @@ class GamePage extends Component {
 
     handleJoinClick = (e) => {
         gameService.joinGame(this.props.user, this.state.gameCode);
+    }
+
+    handleGameUpdate = (gameState) => {
+        this.setState({game: gameState});
+    }
+    handleVeggieChoice = (veggie) => {
+    this.setState({chosenVeggie: veggie});
+    }
+
+    handleOrientationChange = () => {
+        this.setState({orientation: (this.state.orientation === 'horizontal' ? 'vertical' : 'horizontal')});
+    }
+
+    handleVeggiePlanting = (veggieName, orientation, row, col) => {
+        let player = this.props.user.turnNo === 0 ? 'player0' : 'player1';
+        
+        if (this.checkIfValidPlacement(veggieName, orientation, row, col, player)) {
+        this.setState({selectedveggie: ''}, () => {
+            this.socket.emit('place veggie', {veggieName, orientation, row, col, player})
+        });
+        }
+    }
+
+    checkIfValidPlacement = (veggieName, orientation, row, col, player) => {
+        if (veggieName) {
+        let length = this.state.game.veggieKinds[veggieName].length;
+
+        while (length > 0) {
+            if (col < 0 || row < 0 || col > 9 || row > 9) {
+            return false;
+            } else if (this.state.game[player].grids.gardenGrid[row][col].veggie) {
+            return false;
+            }
+            orientation === 'horizontal' ? col += 1 : row += 1;
+            length -= 1;
+        }
+        return true;
+        }
+        return false;
     }
 
     render() {
