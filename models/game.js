@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
+var veggies = require('../config/game/veggies');
 
 var playerSchema = mongoose.Schema({
     id: String,
     name: String,
     grids: [mongoose.Schema.Types.Mixed],
-    veggies: {},
     turnNo: 0,
-    plantedVeggies: [] 
+    plantedVeggies: [mongoose.Schema.Types.Mixed] 
 });
 
 var gameSchema = new mongoose.Schema({
@@ -16,25 +16,6 @@ var gameSchema = new mongoose.Schema({
     }},
     gameOver: {type: Boolean, default: false},
     winner: {type: String, default: null },
-    veggies: {
-        
-    }
 });
-// Hardcode veggies 
-// 'Cucumber': {
-//     length: 5
-//     },
-//     'Carrot': {
-//     length: 4
-//     },
-//     'Broccoli': {
-//     length: 3
-//     },
-//     'Tomato': {
-//     length: 3
-//     },
-//     'Onion': {
-//     length: 2
-
 
 module.exports = mongoose.model('Game', gameSchema)

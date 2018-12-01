@@ -54,6 +54,18 @@ module.exports = {
         game.save();
       });
 
+      // socket.on('veggiePlacement', ({veggieName, orientation, row, col, player}) => {
+      //   let game = games[gameCode];
+        
+      //   // Check if the player is who they say they are
+      //   if (users._id === game.players.id) {
+      //     if (game.handlePlaceVeggies(veggieName, orientation, row, col, player)) {
+      //       game.gameStatus = 'playMode'
+      //     }
+      //     io.to(game.id).emit('gameData', game);
+      //     game.save();
+      //   }
+      // });
     });
   },
 

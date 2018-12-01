@@ -57,7 +57,7 @@ class App extends Component {
 
 /*----- Socket.io -----*/
 
-  snedGameData = () => {
+  senddGameData = () => {
     socket.emit('gameData', this.state.game);
   }
 
