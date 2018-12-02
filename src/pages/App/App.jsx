@@ -42,8 +42,8 @@ class App extends Component {
     alert('Plant!');
   }
 
-  handleShotSelection = () => {
-    alert('Shot!');
+  handleSnackSelection = () => {
+    alert('Snack!');
   }
 
   handleLogout = () => {
@@ -84,7 +84,7 @@ class App extends Component {
       page = <GameBoard
         user={this.state.user}
         handleLogout={this.handleLogout}
-        handleShotSelection={this.handleShotSelection}
+        handleSnackSelection={this.handleSnackSelection}
         handlePlantSelection={this.handlePlantSelection}
         handleCreateGameClick={this.handleCreateGameClick}
       />
