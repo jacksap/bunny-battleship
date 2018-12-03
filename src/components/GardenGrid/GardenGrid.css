@@ -1,10 +1,10 @@
 .GardenGrid {
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
+    grid-template-rows: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
     position: absolute;
-    top: 28vh;
-    right: 63vw;
+    top: 19.5vh;    
+    right: 64vw;
     width: 30vh;
     height: 30vh;
 }
@@ -15,4 +15,16 @@
 }
 .Plant:hover {
     background: rgba(0,0,0,0.2);
+}
+.GardenHeader {
+    color: white;
+    display: flex;
+    position: relative;
+    bottom: 2vh;
+    right: 10.3vw;
+}
+.Garden {
+    display: flex;
+    justify-content: space-evenly;
+
 }

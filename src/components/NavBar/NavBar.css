@@ -1,0 +1,26 @@
+.NavName {
+    font-size: 3em;
+    display: flex;
+    position: relative;
+    bottom: 1.75vh;
+    text-transform: capitalize;
+}
+.NavLink {
+    float: right;
+    position: relative;
+    bottom: 1vh;
+    font-size: 1.2Em;
+    display: flex;
+    justify-content: center;
+}
+.NavBar {
+    display: flex;
+    width: 15vw;
+    flex-wrap: wrap;
+    float: right;
+    position: relative;
+    bottom: 9vh;
+}
+.clearfix {
+    overflow: auto;
+}

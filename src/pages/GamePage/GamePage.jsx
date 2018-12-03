@@ -80,36 +80,38 @@ class GamePage extends Component {
         return false;
     }
 
-    
 
     render() {
         let GamePage = this.props.user ?
-            <div>
+            <div className="GamePage">
+                <div className='onOpen'>
                 <div>
-                    <Link onClick={this.props.handleCreateGameClick} to='/'>CREATE GAME</Link>
+                    <Link onClick={this.props.handleCreateGameClick} to='/' className='onOpenLink'>CREATE GAME</Link>
+                </div>
+                <div>
+                    <Link to='' onClick={this.props.handleLogout} className='onOpenLink'> LOG OUT </Link>
                 </div>
                 <div>
                     <input type="text" placeholder="Game Code" name="gameCode" value={this.state.gameCode} onChange={this.handleChange}/>
-                    <button onClick={this.handleJoinClick}> JOIN GAME </button>
+                    <button onClick={this.handleJoinClick} className='onOpenLink'> JOIN GAME </button>
                 </div>
-                <div>
-                    <Link to='' onClick={this.props.handleLogout}> LOG OUT </Link>
                 </div>
             </div>
             :
-            <div>
-                <div>
+            <div className="GamePage"> 
+                <div className='onOpen'>
                     <div>
-                        <Link to='/login'> LOG IN </Link>
+                        <Link to='/login' className='onOpenLink'> LOG IN </Link>
                     </div>
                     <div>
-                        <Link to='/signup'> SIGN UP </Link>
+                        <Link to='/signup' className='onOpenLink'> SIGN UP </Link>
                     </div>
                 </div>
             </div>;
 
     return (
-        <div className="GamePage">
+        <div>
+            <h1 className='GameName'>GARDEN GROWER</h1>
             {GamePage}
         </div>
         )

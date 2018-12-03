@@ -1,10 +1,10 @@
 .SnackGrid {
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
+    grid-template-rows: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
     position: absolute;
-    top: 28vh;
-    right: 46.7vw;
+    top: 19.5vh;
+    right: 40vw;
     width: 30vh;
     height: 30vh;
 }
@@ -15,4 +15,16 @@
 }
 .Plot:hover {
     background: rgba(0,0,0,0.2);
+}
+.SnackHeader {
+    color: white;
+    display: flex;
+    position: relative;
+    bottom: 13.5vh;
+    left: 6vw;
+}
+.Snack {
+    display: flex;
+    justify-content: space-evenly;
+
 }
