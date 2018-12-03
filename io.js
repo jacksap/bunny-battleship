@@ -32,8 +32,7 @@ module.exports = {
           playerIdx: 0,
           name: user.name,
           id: user._id,
-          grids: grid.makeGameGrids()
-
+          grids: grid.makeGameGrids(),
         });
         game.save(function(err) {
           socket.gameId = game.id;
