@@ -1,30 +1,30 @@
-.GardenGrid {
-    display: grid;
-    grid-template-columns: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
-    grid-template-rows: 15% 15% 15% 15% 15% 15% 15% 15% 15% 15%;
-    position: absolute;
-    top: 19.5vh;    
-    right: 64vw;
-    width: 30vh;
-    height: 30vh;
+.GardenGrid-cell {
+    width: 30%;
+    height: 30%;
+    background-color: white; 
+    border: black solid 1px;
+  }
+  
+.GardenGrid-dot {
+    height: 40%;
+    width: 40%;
+    border-radius: 50%;
+    background-color: none;
+    margin: auto;
 }
-.Plant {
-    z-index: 50;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid #ffed00;
-}
-.Plant:hover {
-    background: rgba(0,0,0,0.2);
-}
-.GardenHeader {
-    color: white;
-    display: flex;
-    position: relative;
-    bottom: 2vh;
-    right: 10.3vw;
-}
-.Garden {
-    display: flex;
-    justify-content: space-evenly;
 
+.GardenGrid-peg.GardenGrid-harvested {
+    background-color: red !important;
+}
+
+.GardenGrid-peg.GardenGrid-hit {
+    background-color: yellow ;
+}
+
+.GardenGrid-peg.GardenGrid-miss {
+    background-color: gray;
+}
+
+.GardenGrid-hover {
+    background-color: darkblue !important;
 }

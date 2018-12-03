@@ -15,7 +15,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
 import WaitingPage from '../WaitingPage/WaitingPage';
-import GameBoard from '../../components/GameBoard/GameBoard';
+import PlayGamePage from '../PlayGamePage/PlayGamePage';
 
 
 
@@ -60,7 +60,7 @@ class App extends Component {
 
 /*----- Socket.io -----*/
 
-  senddGameData = () => {
+  sendGameData = () => {
     socket.emit('gameData', this.state.game);
   }
 
@@ -84,17 +84,15 @@ class App extends Component {
      if (game && game.players.length === 2 && game.garden_state) {
       page = <HighScoresPage />
     } else if (game && game.players.length === 2) {
-      page = <GameBoard
+      page = <GamePage
         user={this.state.user}
         handleLogout={this.handleLogout}
-        handleSnackSelection={this.handleSnackSelection}
-        handlePlantSelection={this.handlePlantSelection}
         handleCreateGameClick={this.handleCreateGameClick}
       />
     } else if (game && game.players.length === 1) {
       page = <WaitingPage game={this.state.game} />
     } else {
-      page = <GamePage
+      page = <PlayGamePage
         user={this.state.user}
         handleLogout={this.handleLogout} 
         handleCreateGameClick={this.handleCreateGameClick}

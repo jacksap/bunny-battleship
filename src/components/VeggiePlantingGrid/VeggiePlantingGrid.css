@@ -1,0 +1,11 @@
+.VeggiePlantingGrid-veggie-selector {
+    display: flex; 
+}
+  
+.VeggiePlantingGrid-veggie {
+    border: solid 5px black;
+}
+  
+.VeggiePlantingGrid-selected {
+    background-color: black;
+}

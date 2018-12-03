@@ -14,7 +14,7 @@ function plantVeggies(playerIdx) {
     }
 }
 
-    function handleVeggiePlanting(veggieName, orientation, row, col, player) {
+function handleVeggiePlanting(veggieName, orientation, row, col, player) {
     if (veggieName) {
         let length = veggies[veggieName].length;
 

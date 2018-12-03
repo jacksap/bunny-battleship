@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './GamePage.css';
-import { Link } from 'react-router-dom';
 import gameService from '../../utils/gameService';
+import NavBar from '../../components/NavBar/NavBar';
+import GameScreen from '../../components/GameScreen/GameScreen'
 
 class GamePage extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class GamePage extends Component {
             gameCode: e.target.value
         })
     }
-
+    
     handleJoinClick = (e) => {
         gameService.joinGame(this.props.user, this.state.gameCode);
     }
@@ -55,14 +56,14 @@ class GamePage extends Component {
     handleVeggiePlanting = (veggieName, orientation, row, col) => {
         let player = this.props.user.turnNo === 0 ? 'player0' : 'player1';
         
-        if (this.checkIfValidPlacement(veggieName, orientation, row, col, player)) {
+        if (this.checkIfValidPlanting(veggieName, orientation, row, col, player)) {
         this.setState({selectedveggie: ''}, () => {
-            this.socket.emit('place veggie', {veggieName, orientation, row, col, player})
+            this.socket.emit('plant veggie', {veggieName, orientation, row, col, player})
         });
         }
     }
 
-    checkIfValidPlacement = (veggieName, orientation, row, col, player) => {
+    checkIfValidPlanting = (veggieName, orientation, row, col, player) => {
         if (veggieName) {
         let length = this.state.game.veggies[veggieName].length;
 
@@ -80,39 +81,68 @@ class GamePage extends Component {
         return false;
     }
 
+    handleGardenGridCellHover = (row, col) => {
+        if (this.state.selectedVeggie) {
+          let player = this.props.user.turnNo === 0 ? this.state.game.players[0] : this.state.game.players[1];
+          let length = this.state.game.veggieKinds[this.state.selectedVeggie].length;
+          let gardenGridCopy = [...this.state.game.player.grids.gardenGrid] // same comment as line 108
+    
+          if (this.checkIfValidPlanting(this.state.selectedVeggie, this.state.orientation, row, col, player)) {
+            while (length > 0) {
+              gardenGridCopy[row][col].hover = true;
+              this.state.orientation === 'horizontal' ? col += 1 : row += 1;
+              length -= 1;
+            }
+            this.setState(prevState => {
+              let newState = {...prevState};
+              newState.game.player.grids.gardenGrid = gardenGridCopy; // same comment as line 108
+              return newState;
+            });
+          }
+        }
+      }
+    
+      handleGardenGridCellLeaveHover = (row, col) => {
+        if (this.state.selectedVeggie) {
+          let player = this.props.user.turnNo === 0 ? this.state.game.players[0] : this.state.game.players[1]; // how am I accessing these players?
+          let length = this.state.game.veggieKinds[this.state.selectedVeggie].length;
+          let gardenGridCopy = [...this.state.game.player.grids.gardenGrid] // should I be feeding the variable in differently?
+    
+          while (length > 0 && col < 10 && row < 10) {
+            gardenGridCopy[row][col].hover = false;
+            this.state.orientation === 'horizontal' ? col += 1 : row += 1;
+            length -= 1;
+          }
+          this.setState(prevState => {
+            let newState = {...prevState};
+            newState.game.player.grids.gardenGrid = gardenGridCopy; // same comment as line 108
+            return newState;
+          });
+        }
+      }
+
 
     render() {
-        let GamePage = this.props.user ?
-            <div className="GamePage">
-                <div className='onOpen'>
-                <div>
-                    <Link onClick={this.props.handleCreateGameClick} to='/' className='onOpenLink'>CREATE GAME</Link>
-                </div>
-                <div>
-                    <Link to='' onClick={this.props.handleLogout} className='onOpenLink'> LOG OUT </Link>
-                </div>
-                <div>
-                    <input type="text" placeholder="Game Code" name="gameCode" value={this.state.gameCode} onChange={this.handleChange}/>
-                    <button onClick={this.handleJoinClick} className='onOpenLink'> JOIN GAME </button>
-                </div>
-                </div>
-            </div>
-            :
-            <div className="GamePage"> 
-                <div className='onOpen'>
-                    <div>
-                        <Link to='/login' className='onOpenLink'> LOG IN </Link>
-                    </div>
-                    <div>
-                        <Link to='/signup' className='onOpenLink'> SIGN UP </Link>
-                    </div>
-                </div>
-            </div>;
-
     return (
         <div>
-            <h1 className='GameName'>GARDEN GROWER</h1>
-            {GamePage}
+            <NavBar user={this.props.user} handleLogout={this.props.handleLogout} />
+            <GameScreen myGameData={this.state.user ? 
+              (this.props.user._id === this.state.game.player0.id ? this.state.game.player0 : this.state.game.player1)
+              :
+              this.state.game.player1
+            }
+            game={this.state.game}
+            socket={this.socket}
+            user={this.props.user}
+            snackAttempt={this.snackAttempt}
+            handleVeggiePlanting={this.handleVeggiePlanting}
+            handleVeggieSelection={this.handleVeggieSelection}
+            handleOrientationChange={this.handleOrientationChange}
+            selectedVeggie={this.state.selectedVeggie}
+            orientation={this.state.orientation}
+            checkIfValidPlanting={this.checkIfValidPlanting}
+            handleGardenGridCellHover={this.handleGardenGridCellHover}
+            handleGardenGridCellLeaveHover={this.handleGardenGridCellLeaveHover} />
         </div>
         )
     }
