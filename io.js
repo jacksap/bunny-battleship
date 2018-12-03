@@ -44,14 +44,15 @@ module.exports = {
         });
       });
 
-      socket.on('joinGame', function(user, gameCode) {
+      socket.on('joinGame', function(user, gameCode, turnNo) {
         console.log(gameCode);
         var game = games[gameCode];
         game.players.push({
           playerIdx: 1,
           name: user.name,
           id: user.id,
-          grids: grid.makeGameGrids()
+          grids: grid.makeGameGrids(),
+          turnNo
         });
         console.log(game);
         socket.join(gameCode);

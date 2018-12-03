@@ -5,15 +5,18 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import userService from '../../utils/userService';
+import gameService from '../../utils/gameService';
+
+import socket from '../../utils/socket';
+
 import GamePage from '../GamePage/GamePage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
 import WaitingPage from '../WaitingPage/WaitingPage';
 import GameBoard from '../../components/GameBoard/GameBoard';
-import userService from '../../utils/userService';
-import gameService from '../../utils/gameService';
-import socket from '../../utils/socket';
+
 
 
 class App extends Component {

@@ -1,3 +1,5 @@
+const veggies = require('./veggies');
+
 function snackAttempt(row, col) {
     let snackingBunny,
         gardener;
@@ -14,12 +16,12 @@ function snackAttempt(row, col) {
     let gardenersTargetedCell = gardenersGrid[row][col];
     let bunnysGrid = snackingBunny.grids.snackGrid;
 
-    if (!gardenersTargetedCell.targeted) {
     // Check if the targeted cell has already been snacked upon
+    // Check if there is a veggie in the targeted cell
+    // Check if the veggie has already been harvested
+    if (!gardenersTargetedCell.targeted) {
       gardenersTargetedCell.targeted = true;
-      // Check if there is a veggie in the targeted cell
       if (gardenersTargetedCell.veggie) {
-        // Check if the veggie has already been harvested
         if (!gardenersTargetedCell.harvested) {
           let veggieName = gardenersTargetedCell.veggie;
           // Change game state to represent the veggie hit
@@ -28,7 +30,7 @@ function snackAttempt(row, col) {
           bunnysGrid[row][col] = 'hit';
           
           // Check if the current shot has harvested the veggie
-          if (gardener.veggies[veggieName].hits === veggieTypes[veggieName].length) {
+          if (gardener.veggies[veggieName].hits === veggies[veggieName].length) {
             // If the veggie has been harvested update game state to account for that
             gardener.veggies[veggieName].harvested = true;
             gardenersGrid.forEach((searchRow, rowIdx) => {

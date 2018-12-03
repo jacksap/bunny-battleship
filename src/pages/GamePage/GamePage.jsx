@@ -64,7 +64,7 @@ class GamePage extends Component {
 
     checkIfValidPlacement = (veggieName, orientation, row, col, player) => {
         if (veggieName) {
-        let length = this.state.game.veggieKinds[veggieName].length;
+        let length = this.state.game.veggies[veggieName].length;
 
         while (length > 0) {
             if (col < 0 || row < 0 || col > 9 || row > 9) {
@@ -79,6 +79,8 @@ class GamePage extends Component {
         }
         return false;
     }
+
+    
 
     render() {
         let GamePage = this.props.user ?
