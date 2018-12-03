@@ -16,6 +16,7 @@ var gameSchema = new mongoose.Schema({
     }},
     gameOver: {type: Boolean, default: false},
     winner: {type: String, default: null },
+    gameStatus: {type: String, default: null }
 });
 
 module.exports = mongoose.model('Game', gameSchema)

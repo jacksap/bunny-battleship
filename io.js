@@ -1,5 +1,7 @@
 const Game = require('./models/game');
 const grid = require('./config/game/grid');
+const veggies = require('./config/game/veggies');
+const plant = require('./config/game/plant')
 
 let io;
 var games = {}; 
@@ -26,6 +28,7 @@ module.exports = {
       socket.on('createGame', function(user) {
         var game = new Game();
         game.players.push({
+          playerIdx: 0,
           name: user.name,
           id: user._id,
           grids: grid.makeGameGrids()
@@ -44,6 +47,7 @@ module.exports = {
         console.log(gameCode);
         var game = games[gameCode];
         game.players.push({
+          playerIdx: 1,
           name: user.name,
           id: user.id,
           grids: grid.makeGameGrids()
@@ -54,12 +58,12 @@ module.exports = {
         game.save();
       });
 
-      socket.on('veggiePlanting', ({veggieName, orientation, row, col, player}) => {
+      socket.on('veggiePlanting', ({veggieName, orientation, row, col, playerIdx}) => { // veggie name needs to be accessed.
         let game = games[gameCode];
         
         // Check player
         if (users._id === game.players.id) {
-          if (game.handleVeggiePlanting(veggieName, orientation, row, col, player)) {
+          if (plant.handleVeggiePlanting(veggieName, orientation, row, col, playerIdx)) {
             game.gameStatus = 'playMode'
           }
           io.to(game.id).emit('gameData', game);
