@@ -2,6 +2,7 @@ const Game = require('./models/game');
 const grid = require('./config/game/grid');
 const veggies = require('./config/game/veggies');
 const plant = require('./config/game/plant')
+const snack = require('./config/game/snack')
 
 let io;
 var games = {}; 
@@ -70,6 +71,39 @@ module.exports = {
           game.save();
         }
       });
+
+      socket.on('snackAttempt', ({row, col}) => {
+        let game = games[gameCode];
+        let snackingBunny,
+        gardener;
+        
+        if (users._id === game.players[0].id) {
+          snackingBunny = game.player[0];
+          gardener = game.player[1];
+        } else {
+          snackingBunny = game.player[1];
+          gardener = game.game.player[0];
+        }
+    
+        // Check if the game actually exists & is still going
+        if (game && !game.gameOver) {
+          // Check if it is the shooting player's turn
+          if (game.currentTurn === snackingBunny.turnNo) {
+            // Submit the shooting players shot
+            if (snack.snackAttempt(row, col)) {
+              // Shot was valid, check for a winner
+              if (snack.checkForGameWinner()) {
+                game.gameOver = true;
+                game.winner = snackingBunny.id;
+              }
+              // switch current turn and send game state to both players
+              game.currentTurn ? game.currentTurn = 0 : game.currentTurn = 1;
+              io.to(game.id).emit('gameData', game);
+            }
+          }
+        }
+    
+      })
     });
   },
 

@@ -11,12 +11,12 @@ var playerSchema = mongoose.Schema({
 
 var gameSchema = new mongoose.Schema({
     players: [playerSchema],
-    turnIndex: {type: Number, default: function() {
+    currentTurn: {type: Number, default: function() {
         return Math.floor(Math.random() * 2);
     }},
     gameOver: {type: Boolean, default: false},
     winner: {type: String, default: null },
-    gameStatus: {type: String, default: null }
+    gameStatus: {type: String, default: null },
 });
 
 module.exports = mongoose.model('Game', gameSchema)
