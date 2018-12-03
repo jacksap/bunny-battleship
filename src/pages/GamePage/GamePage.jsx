@@ -46,7 +46,7 @@ class GamePage extends Component {
         this.setState({game: gameState});
     }
     handleVeggieChoice = (veggie) => {
-    this.setState({chosenVeggie: veggie});
+    this.setState({selectedVeggie: veggie});
     }
 
     handleOrientationChange = () => {
