@@ -70,7 +70,7 @@ module.exports = {
         
         // Check player
         var player = game.players[socket.playerIdx];
-        if (plant.plantVeggieForPlayer(grid, vegName)) {
+        if (plant.plantVeggieForPlayer(player.grids, vegName)) {
           game.gameStatus = 'playMode';
         }
         io.to(game.id).emit('gameData', game);
