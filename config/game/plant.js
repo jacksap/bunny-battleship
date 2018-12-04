@@ -42,6 +42,7 @@ function checkVeggiePlanting(horizontal, len, row, col){
         for(var i = 0; i < len; i++){
             //If a section of the board contains a ship, it's marked with a one
             //thus, if the function detects the section is marked with one, it returns false 
+            // I WILL HAVE TO WRITE A VEGGIE NAME CHECK FN like an if else 
             if(game.players[playerIdx].gardenGrid[row][col + i] == 1){
                 return false; 
             }
@@ -58,10 +59,11 @@ function checkVeggiePlanting(horizontal, len, row, col){
 }
 
 //places the veggies onto the board 
-function plantVeggieForPlayer(slen, r, c, h_alignment){
+function plantVeggieForPlayer(slen, r, c, horizontal){
     for(var i = 0; i < slen; i++){
-        if(h_alignment){
+        if(horizontal){
             game.players[playerIdx].gardenGrid[r][c + i] += 1; 
+            // something about the veggie name here - I should maybe check
         }
         else{
             game.players[playerIdx].gardenGrid[r + i][c] += 1; 
