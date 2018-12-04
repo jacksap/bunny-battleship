@@ -82,21 +82,24 @@ module.exports = {
       socket.on('snackAttempt', ({row, col}) => {  // console.log the first round then it crashes
         console.log(row, col)      
         let game = games[socket.gameId];
+        console.log(game) // nothing from this one.
+        var player = game.players[socket.playerIdx];
+        console.log(player)
         let snackingBunny,
         opponent;
         
-        if (game.currentTurn === 0) { // i have tried a variety of things here
-          snackingBunny = game.players[0];
-          opponent = game.players[1];
-        } else {
-          snackingBunny = game.players[1];
-          opponent = game.players[0];
-        }
+        // if (game.currentTurn === 0) { // i have tried a variety of things here
+        //   snackingBunny = game.players[0];
+        //   opponent = game.players[1];
+        // } else {
+        //   snackingBunny = game.players[1];
+        //   opponent = game.players[0];
+        // }
     
         // Check if the game actually exists & is still going
         if (game && !game.gameOver) {
           // Check if it is the shooting player's turn
-          if (game.currentTurn === snackingBunny.turnNo) {
+          if (game.currentTurn === player.turnNo) {
             // Submit the shooting players shot
             if (snack.snackAttempt(row, col)) {
               // Shot was valid, check for a winner
