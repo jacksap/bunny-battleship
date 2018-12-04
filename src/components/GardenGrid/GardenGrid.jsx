@@ -2,7 +2,7 @@ import React from 'react';
 import './GardenGrid.css';
 
 const GardenGrid = (props) => {
-
+    let gameStart = !props.gameStatus ? <button onClick={props.veggiePlanting}>Plant Veggies</button> : <p>Good Luck</p>;
     let tableBody = props.grid.slice()
     tableBody = tableBody.map((row, rowIdx) => {
       return (
@@ -12,7 +12,6 @@ const GardenGrid = (props) => {
             return (
                <td 
                 key={`${rowIdx}${colIdx}`}
-                onClick={props.snackAttempt}
               >
                 <div className={`GardenGrid-dot${cell.harvested ? ' GardenGrid-harvested' : ''}${cell.hit ? ' GardenGrid-hit' : ''}${cell.miss ? ' GardenGrid-miss' : ''}`} />
               </td>
@@ -31,6 +30,7 @@ const GardenGrid = (props) => {
             {tableBody}
           </tbody>
         </table>
+        {gameStart}
       </div>
     );
   }

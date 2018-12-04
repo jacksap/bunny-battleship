@@ -9,7 +9,7 @@ const NavBar = (props) => {
       <div className='NavBar'>
       <span className='NavLink'>Welcome, {props.user.name}</span>
       <br />
-      <Link to='/high-scores' className='NavLink'>High Scores</Link>
+      {/* <Link to='/high-scores' className='NavLink'>High Scores</Link> */}
       <span className='NavLink'>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
       <Link to='' onClick={props.handleLogout} className='NavLink'>Log Out</Link>
     </div>

@@ -4,7 +4,6 @@ var playerSchema = mongoose.Schema({
     id: String,
     name: String,
     grids: [mongoose.Schema.Types.Mixed],
-    turnNo: 0,
     plantedVeggies: [mongoose.Schema.Types.Mixed], 
     veggies: [mongoose.Schema.Types.Mixed],
     turnNo: Number 

@@ -55,7 +55,6 @@ class PlayGamePage extends Component {
 
 return (
     <div>
-        <h1 className='GameName'>GARDEN GROWER</h1>
         {PlayGamePage}
     </div>
     )

@@ -6,8 +6,10 @@ const GameGrids = (props) => {
   let grids = 
     <div>
         <div className="row">
-            <GardenGrid 
+            <GardenGrid
+                game={props.game}
                 grid={props.myGameData.grids[0].gardenGrid}
+                veggiePlanting={props.veggiePlanting}
             />
             <SnackGrid 
                 grid={props.myGameData.grids[0].snackGrid}

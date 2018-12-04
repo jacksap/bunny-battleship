@@ -1,6 +1,9 @@
 .PlayGamePage {
     display: flex;
     justify-content: center;
+    position: relative;
+    top: 8vh;
+    left: 12vw;
 }
 .inputPGP {
     border: 4px solid black;

@@ -15,11 +15,11 @@
 }
 .NavBar {
     display: flex;
-    width: 19vw;
+    width: 23vw;
     flex-wrap: wrap;
     float: right;
     position: relative;
-    bottom: 9vh;
+    bottom: 5vh;
 }
 .clearfix {
     overflow: auto;

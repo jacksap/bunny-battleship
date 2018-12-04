@@ -22,7 +22,7 @@ class HighScoresPage extends Component {
       <div>
         <header>High Scores</header>
         <Link to='/'>RETURN</Link><br />
-        <NavBar />
+        <NavBar user={this.props.user} handleLogout={this.props.handleLogout} />
       </div>
     );
   }

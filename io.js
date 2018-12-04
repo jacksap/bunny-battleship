@@ -33,7 +33,8 @@ module.exports = {
           name: user.name,
           id: user._id,
           grids: grid.makeGameGrids(),
-          turnNo: 0
+          turnNo: 0,
+          veggies: veggies
         });
         game.save(function(err) {
           socket.gameId = game.id;
@@ -46,16 +47,16 @@ module.exports = {
       });
       
       socket.on('joinGame', function(user, gameCode, turnNo) {
-        console.log(gameCode);
         var game = games[gameCode];
         game.players.push({
           playerIdx: 1,
           name: user.name,
           id: user.id,
           grids: grid.makeGameGrids(),
-          turnNo: 1
+          turnNo: 1,
+          veggies: veggies
         });
-        console.log(game);
+        // is this where I change game.gameStatus
         socket.gameId = game.id;
         socket.playerIdx = 1;
         socket.join(gameCode);
@@ -65,12 +66,13 @@ module.exports = {
         game.save();
       });
 
-      socket.on('veggiePlanting', ({veggieName, orientation, row, col}) => { // veggie name needs to be accessed.
+      socket.on('veggiePlanting', ({veggieName, row, col}) => { // veggie name needs to be accessed.
         let game = games[socket.gameId];
         
         // Check player
         var player = game.players[socket.playerIdx];
-        if (plant.plantVeggieForPlayer(player.grids, vegName)) {
+        var veggies = player.veggies[0];
+        if (plant.randomVeggiePlanting(game, player, veggies)) {
           game.gameStatus = 'playMode';
         }
         io.to(game.id).emit('gameData', game);
@@ -101,9 +103,9 @@ module.exports = {
           // Check if it is the shooting player's turn
           if (game.currentTurn === player.turnNo) {
             // Submit the shooting players shot
-            if (snack.snackAttempt(row, col)) {
+            if (snack.snackAttempt(game, row, col)) {
               // Shot was valid, check for a winner
-              if (snack.checkForGameWinner()) {
+              if (snack.checkForGameWinner(game)) {
                 game.gameOver = true;
                 game.winner = snackingBunny.id;
               }

@@ -1,6 +1,6 @@
 const veggies = require('./veggies');
 
-function snackAttempt(row, col) {
+function snackAttempt(game, row, col) {
     let snackingBunny,
         opponent;
 
@@ -12,9 +12,9 @@ function snackAttempt(row, col) {
       opponent = game.players[0];
     }
 
-    let opponentsGrid = opponent[0].grids.gardenGrid;
+    let opponentsGrid = opponent.grids[0].gardenGrid;
     let opponentsTargetedCell = opponentsGrid[row][col];
-    let bunnysGrid = snackingBunny[0].grids.snackGrid;
+    let bunnysGrid = snackingBunny.grids[0].snackGrid;
 
     // Check if the targeted cell has already been snacked upon
     // Check if there is a veggie in the targeted cell
@@ -52,7 +52,7 @@ function snackAttempt(row, col) {
     return false;
 }
 
-  function checkForGameWinner() {
+  function checkForGameWinner(game) {
     let snackingBunny, // why is this graying on me...
         opponent;
 

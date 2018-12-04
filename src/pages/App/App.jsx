@@ -16,6 +16,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
 import WaitingPage from '../WaitingPage/WaitingPage';
 import PlayGamePage from '../PlayGamePage/PlayGamePage';
+import NavBar from '../../components/NavBar/NavBar'
 
 
 
@@ -62,10 +63,14 @@ class App extends Component {
   }
   
   snackAttempt = (row, col) => {
-    console.log(this.snackAttempt)
     console.log(row, col)
-    this.sendGameData(); // added this to bring in the gameData.. not sure if that was what I needed to call? async await maybe?
     socket.emit('snackAttempt', {row, col} );
+  }
+
+  veggiePlanting = (veggieName, row, col) => {
+    console.log(this.veggiePlanting)
+    console.log(veggieName, row, col)
+    socket.emit('snackAttempt', {veggieName, row, col} );
   }
 
 /*---------- Lifecycle Methods ----------*/
@@ -86,17 +91,21 @@ class App extends Component {
     let page;
 
      if (game && game.players.length === 2 && game.garden_state) {
-      page = <HighScoresPage />
+      page = <HighScoresPage 
+      user={this.state.user}
+      handleLogout={this.handleLogout}
+        />
     } else if (game && game.players.length === 2) {
       page = <GamePage
         user={this.state.user}
         handleLogout={this.handleLogout}
         handleCreateGameClick={this.handleCreateGameClick}
         snackAttempt={this.snackAttempt}
+        veggiePlanting={this.veggiePlanting}
         game={this.state.game}
       />
     } else if (game && game.players.length === 1) {
-      page = <WaitingPage game={this.state.game} />
+      page = <WaitingPage game={this.state.game}/>
     } else {
       page = <PlayGamePage
         user={this.state.user}
@@ -108,6 +117,11 @@ class App extends Component {
 
     return (
       <div className="App">
+          <NavBar 
+            game={this.state.game} 
+            user={this.state.user} 
+            handleLogout={this.handleLogout}
+          />
           <Switch>
           <Route exact path='/' render={() =>
           page
@@ -126,7 +140,10 @@ class App extends Component {
           }/>
           <Route exact path='/highscores' render={() => (
               userService.getUser() ?
-                <HighScoresPage />
+                <HighScoresPage 
+                user={this.state.user}
+                handleLogout={this.handleLogout} 
+                />
                 :
                 <Redirect to='/login' />
             )}/>

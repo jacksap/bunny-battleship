@@ -1,0 +1,24 @@
+.WaitingPage {
+    background-color: #ffed00;
+    width: 20vw;
+    height: 25vh;
+    display: flex;
+    border: 5px solid black;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: space-evenly;
+}
+div.WaitingPage {
+    padding-top: 4vh;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5em;
+}
+.WaitingPageCell {
+    display: flex;
+    justify-content: center;
+    margin: 15vh auto;
+}
+.GameID {
+    background-color: white;
+}

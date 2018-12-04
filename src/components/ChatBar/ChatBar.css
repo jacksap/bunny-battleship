@@ -1,7 +1,45 @@
 .Chat {
     display: flex;
-    justify-content: flex-end;
-    position: relative;
-    bottom: 80vh;
-    right: 8vw;
+    background-color: #ffed00;
+    border: 5px solid black;
+    justify-content: space-around;
+    text-align: center;
+    border-radius: 20px;
+    width: 20vw;
+    float:right;
+    position: absolute;
+    bottom: 8vh;
+    left: 72vw;
+}
+.ChatInput{
+    display: flex;
+    text-align: center;
+}
+.ChatSection{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    padding: 1%;
+}
+.ChatButton {
+    font-family: 'Patrick Hand', cursive;
+    text-decoration: none;
+    font-size: 1em;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    margin: 1% auto;
+    display: flex;
+}
+
+.ChatInputBox{
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 6vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 1% auto;
 }

@@ -38,10 +38,7 @@ class ChatBar extends Component {
     return (
         <div className="Chat">
             <div>
-              <section className="ChatSection">
-                <textarea type="text" name='msg' value={this.state.msg} onChange={this.handleChange} /><br/>
-                <button onClick={this.sendChat}>Send Chat</button>
-              </section>
+              
               <section className="ChatSection">
                 {this.state.chats.map((c, i) =>
                   <article key={i}>
@@ -49,6 +46,10 @@ class ChatBar extends Component {
                     <span>{c.msg}</span>
                   </article>
                 )}
+              </section>
+              <section className="ChatInput">
+                <textarea className="ChatInputBox" type="text" name='msg' value={this.state.msg} onChange={this.handleChange} /><br/>
+                <button className="ChatButton" onClick={this.sendChat}>Send Chat</button>
               </section>
             </div>
         </div>

@@ -10,8 +10,12 @@ const GameScreen = (props) => {
         game={props.game}
         user={props.user}
         snackAttempt={props.snackAttempt}
+        veggiePlanting={props.veggiePlanting}
       />
-      <ChatBar />
+      <ChatBar 
+        game={props.game}
+        user={props.user}
+      />
       </div>
   );
 }
