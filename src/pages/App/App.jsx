@@ -41,11 +41,11 @@ class App extends Component {
 
 /*---------- Callback Methods ----------*/
 
-  handlePlantSelection = () => {
-    alert('Plant!');
-  }
+  // handlePlantSelection = () => {
+  //   alert('Plant!');
+  // }
 
-  handleSnackSelection = () => {
+  snackAttempt = () => {
     alert('Snack!');
   }
 
@@ -88,6 +88,7 @@ class App extends Component {
         user={this.state.user}
         handleLogout={this.handleLogout}
         handleCreateGameClick={this.handleCreateGameClick}
+        snackAttempt={this.snackAttempt}
       />
     } else if (game && game.players.length === 1) {
       page = <WaitingPage game={this.state.game} />

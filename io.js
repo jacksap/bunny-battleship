@@ -36,13 +36,14 @@ module.exports = {
         });
         game.save(function(err) {
           socket.gameId = game.id;
+          socket.playerIdx = 0;
           socket.join(game.id);
           // initialize all of the game doc's state
           io.to(game.id).emit('gameData', game);
           games[game._id] = game;
         });
       });
-
+      
       socket.on('joinGame', function(user, gameCode, turnNo) {
         console.log(gameCode);
         var game = games[gameCode];
@@ -54,35 +55,38 @@ module.exports = {
           turnNo
         });
         console.log(game);
+        socket.gameId = game.id;
+        socket.playerIdx = 1;
         socket.join(gameCode);
+        // initialize veggies
+
         io.to(game.id).emit('gameData', game);
         game.save();
       });
 
-      socket.on('veggiePlanting', ({veggieName, orientation, row, col, playerIdx}) => { // veggie name needs to be accessed.
-        let game = games[gameCode];
+      socket.on('veggiePlanting', ({veggieName, orientation, row, col}) => { // veggie name needs to be accessed.
+        let game = games[socket.gameId];
         
         // Check player
-        if (users._id === game.players.id) {
-          if (plant.handleVeggiePlanting(veggieName, orientation, row, col, playerIdx)) {
-            game.gameStatus = 'playMode'
-          }
-          io.to(game.id).emit('gameData', game);
-          game.save();
+        var player = game.players[socket.playerIdx];
+        if (plant.plantVeggieForPlayer(grid, vegName)) {
+          game.gameStatus = 'playMode';
         }
+        io.to(game.id).emit('gameData', game);
+        game.save();
       });
 
       socket.on('snackAttempt', ({row, col}) => {
-        let game = games[gameCode];
+        let game = games[socket.gameId];
         let snackingBunny,
-        gardener;
+        opponent;
         
         if (users._id === game.players[0].id) {
-          snackingBunny = game.player[0];
-          gardener = game.player[1];
+          snackingBunny = game.players[0];
+          opponent = game.players[1];
         } else {
-          snackingBunny = game.player[1];
-          gardener = game.game.player[0];
+          snackingBunny = game.players[1];
+          opponent = game.players[0];
         }
     
         // Check if the game actually exists & is still going

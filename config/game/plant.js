@@ -1,37 +1,35 @@
 const veggies = require('./veggies');
 const grid = require('./grid')
 
-function plantVeggies(playerIdx) {
-    let gardenGrid = player[`${playerIdx}`].grids.gardenGrid; // how am I going to access playerIdx (0/1)
-    let row = 0;
+function randomVeggiePlanting(game, veggies) {
+    game.players.forEach(function(player) {
+        let grid = player.grids[0].gardenGrid;
+        for (let vegName in veggies) {
+            plantVeggieForPlayer(grid, vegName);
+        }  
+    });
 
-    for (let key in veggies) {
-        player[`${playerIdx}`].veggies[key] = { hits: 0 , harvested: false}
-        for (let i = 0; i < veggies[key].length; i++) {
-        gardenGrid[row][i].veggie = key;
+}
+
+function plantVeggieForPlayer(grid, vegName) {
+    let length = vegName.length;
+    col = Math.floor(Math.random() * 9);
+    row = Math.floor(Math.random() * 9);
+    while (length > 0) {
+        if (!grid[col][row].veggie) {
+            grid[col][row].veggie = vegName
+        } else {
+            
         }
-        row += 2;
+        length -= 1
     }
 }
 
-function handleVeggiePlanting(veggieName, orientation, row, col, player) {
-    if (veggieName) {
-        let length = veggies[veggieName].length;
-
-        while (length > 0) {
-        [player].grids.gardenGrid[row][col].veggie = veggieName;
-        orientation === 'horizontal' ? col += 1 : row += 1;
-        length -= 1;
-        }
-
-        [player].veggies[veggieName] = { hits: 0, harvested: false };
-        [player].plantedVeggies.push(veggieName);
-
-        return (player[0].plantedVeggies.length === 5 && player[1].plantedVeggies.length === 5);
-    }
-}
+// random orientation in while loop 
+// random placement
+// if taken...
 
 module.exports= {
-    plantVeggies,
-    handleVeggiePlanting
+    randomVeggiePlanting,
+    plantVeggieForPlayer
 }

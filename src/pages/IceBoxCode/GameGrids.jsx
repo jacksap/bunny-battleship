@@ -14,12 +14,23 @@ const GameGrids = (props) => {
         <div>
             <VeggiePlantingGrid 
                 veggies={props.game.veggies}
+                // plantedVeggies={props.myGameData.plantedVeggies}
+                // handleVeggiePlanting={props.handleVeggiePlanting}
+                // handleVeggieSelection={props.handleVeggieSelection}
+                // handleOrientationChange={props.handleOrientationChange}
+                // orientation={props.orientation}
+                // selectedVeggie={props.selectedVeggie}
             />
             <GardenGrid 
                 grid={props.myGameData.grids.gardenGrid}
+                // handleVeggiePlanting={props.handleVeggiePlanting}
+                // selectedveggie={props.selectedveggie}
                 orientation={props.orientation}
+                // checkIfValidPlanting={props.checkIfValidPlanting}
                 veggies={props.game.veggies}
                 user={props.user}
+                // handleGardenGridCellHover={props.handleGardenGridCellHover}
+                // handleGardenGridCellLeaveHover={props.handleGardenGridCellLeaveHover}
             />
         </div>;
     } else {
