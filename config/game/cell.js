@@ -1,6 +1,6 @@
 class GameCell {
-    constructor (name) {
-      this.veggie = name;
+    constructor () {
+      this.veggie = '';
       this.hit = false;
       this.miss = false;
       this.harvested = false;

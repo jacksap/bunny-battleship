@@ -13,7 +13,7 @@ const SnackGrid = (props) => {
               key={`${rowIdx}${colIdx}`}
               data-row={rowIdx}
               data-col={colIdx}
-              onClick={() => props.snackAttack(rowIdx, colIdx)}
+              onClick={() => props.snackAttempt(rowIdx, colIdx)}
             >
               <div />
             </td>

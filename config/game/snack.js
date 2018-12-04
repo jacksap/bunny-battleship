@@ -4,17 +4,17 @@ function snackAttempt(row, col) {
     let snackingBunny,
         opponent;
 
-    if (currentTurn === 0) {
-      snackingBunny = player[0]; // how am i passing this via socket?
-      opponent = player[1];
+    if (game.currentTurn === 0) {
+      snackingBunny = game.players[0]; // how am i passing this via socket?
+      opponent = game.players[1];
     } else {
-      snackingBunny = player[1];
-      opponent = player[0];
+      snackingBunny = game.players[1];
+      opponent = game.players[0];
     }
 
-    let opponentsGrid = opponent.grids.gardenGrid;
+    let opponentsGrid = opponent[0].grids.gardenGrid;
     let opponentsTargetedCell = opponentsGrid[row][col];
-    let bunnysGrid = snackingBunny.grids.snackGrid;
+    let bunnysGrid = snackingBunny[0].grids.snackGrid;
 
     // Check if the targeted cell has already been snacked upon
     // Check if there is a veggie in the targeted cell
@@ -26,7 +26,7 @@ function snackAttempt(row, col) {
           let veggieName = opponentsTargetedCell.veggie;
           // Change game state to represent the veggie hit
           opponentsTargetedCell.hit = true;
-          opponent.veggies[veggieName].hits += 1;
+          opponent.veggies[veggieName].hits += 1; // the Player needs a veggie array.
           bunnysGrid[row][col] = 'hit';
           
           // Check if the current shot has harvested the veggie
@@ -56,12 +56,12 @@ function snackAttempt(row, col) {
     let snackingBunny, // why is this graying on me...
         opponent;
 
-    if (currentTurn === 0) {
-      snackingBunny = player[0];
-      opponent = player[1];
+    if (game.currentTurn === 0) {
+      snackingBunny = game.players[0];
+      opponent = game.players[1];
     } else {
-      snackingBunny = player[1];
-      opponent = player[0];
+      snackingBunny = game.players[1];
+      opponent = game.players[0];
     }
 
     for (let veggie in opponent.veggies) {

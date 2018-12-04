@@ -45,23 +45,27 @@ class App extends Component {
   //   alert('Plant!');
   // }
 
-  snackAttempt = () => {
-    alert('Snack!');
-  }
-
+  
   handleLogout = () => {
     userService.logout();
     this.setState({user: null});
   }
-
+  
   handleSignuporLogin = () => {
     this.setState({user: userService.getUser()});
   }
-
-/*----- Socket.io -----*/
-
+  
+  /*----- Socket.io -----*/
+  
   sendGameData = () => {
     socket.emit('gameData', this.state.game);
+  }
+  
+  snackAttempt = (row, col) => {
+    console.log(this.snackAttempt)
+    console.log(row, col)
+    this.sendGameData(); // added this to bring in the gameData.. not sure if that was what I needed to call? async await maybe?
+    socket.emit('snackAttempt', {row, col} );
   }
 
 /*---------- Lifecycle Methods ----------*/

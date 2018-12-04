@@ -77,12 +77,15 @@ module.exports = {
         game.save();
       });
 
-      socket.on('snackAttempt', ({row, col}) => {        
+
+
+      socket.on('snackAttempt', ({row, col}) => {  // console.log the first round then it crashes
+        console.log(row, col)      
         let game = games[socket.gameId];
         let snackingBunny,
         opponent;
         
-        if (user._id === game.players[0].id) {
+        if (game.currentTurn === 0) { // i have tried a variety of things here
           snackingBunny = game.players[0];
           opponent = game.players[1];
         } else {
