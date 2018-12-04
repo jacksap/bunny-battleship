@@ -52,7 +52,7 @@ module.exports = {
           name: user.name,
           id: user.id,
           grids: grid.makeGameGrids(),
-          turnNo
+          turnNo: 1
         });
         console.log(game);
         socket.gameId = game.id;
@@ -76,12 +76,12 @@ module.exports = {
         game.save();
       });
 
-      socket.on('snackAttempt', ({row, col}) => {
+      socket.on('snackAttempt', ({row, col}) => {        
         let game = games[socket.gameId];
         let snackingBunny,
         opponent;
         
-        if (users._id === game.players[0].id) {
+        if (user._id === game.players[0].id) {
           snackingBunny = game.players[0];
           opponent = game.players[1];
         } else {
@@ -106,8 +106,8 @@ module.exports = {
             }
           }
         }
-    
-      })
+      });
+
     });
   },
 

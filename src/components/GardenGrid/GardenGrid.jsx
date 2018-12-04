@@ -12,6 +12,7 @@ const GardenGrid = (props) => {
             return (
                <td 
                 key={`${rowIdx}${colIdx}`}
+                onClick={props.snackAttempt}
               >
                 <div className={`GardenGrid-dot${cell.harvested ? ' GardenGrid-harvested' : ''}${cell.hit ? ' GardenGrid-hit' : ''}${cell.miss ? ' GardenGrid-miss' : ''}`} />
               </td>
@@ -25,7 +26,7 @@ const GardenGrid = (props) => {
     return(
       <div>
         <h2>PLANT YOUR VEGGIES</h2>
-        <table>
+        <table className='GardenTable'>
           <tbody>
             {tableBody}
           </tbody>

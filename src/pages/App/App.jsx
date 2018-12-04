@@ -89,6 +89,7 @@ class App extends Component {
         handleLogout={this.handleLogout}
         handleCreateGameClick={this.handleCreateGameClick}
         snackAttempt={this.snackAttempt}
+        game={this.state.game}
       />
     } else if (game && game.players.length === 1) {
       page = <WaitingPage game={this.state.game} />

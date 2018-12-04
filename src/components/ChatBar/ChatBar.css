@@ -1,6 +1,7 @@
 .Chat {
-    float: right;
-}
-.clearfix {
-    overflow: auto;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 80vh;
+    right: 8vw;
 }

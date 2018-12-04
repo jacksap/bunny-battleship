@@ -27,7 +27,7 @@ const SnackGrid = (props) => {
   return(
     <div>
       <h2>FIND A SNACK</h2>
-      <table>
+      <table className='SnackTable'>
         <tbody>
           {tableBody}
         </tbody>
