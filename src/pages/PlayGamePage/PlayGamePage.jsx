@@ -36,7 +36,7 @@ class PlayGamePage extends Component {
                     <Link to='' onClick={this.props.handleLogout} className='onOpenLink'> LOG OUT </Link>
                 </div>
                 <div>
-                    <input type="text" placeholder="Game Code" name="gameCode" value={this.state.gameCode} onChange={this.handleChange}/>
+                    <input type="text" placeholder="ENTER GAME CODE" name="gameCode" className="inputPGP" value={this.state.gameCode} onChange={this.handleChange}/>
                     <button onClick={this.handleJoinClick} className='onOpenLink'> JOIN GAME </button>
                 </div>
                 </div>

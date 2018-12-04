@@ -33,6 +33,7 @@ module.exports = {
           name: user.name,
           id: user._id,
           grids: grid.makeGameGrids(),
+          turnNo: 0
         });
         game.save(function(err) {
           socket.gameId = game.id;
