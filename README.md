@@ -14,7 +14,7 @@ This SPApp was created with HTML5, CSS3, JavaScript, NodeJS, Express, MongoDB/Mo
 
 ## Getting Started
 
-The app is hosted on Heroku and is acccessible through this [Polish Poetry](https://garden-grower.herokuapp.com/) link. 
+The app is hosted on Heroku and is acccessible through this [Garden Grower](https://garden-grower.herokuapp.com/) link. 
 
 The object of the game is to blow up the other other player's ships, but in our case it is to snack on all the veggies our lil' bunnies can grab ahold of.
 
