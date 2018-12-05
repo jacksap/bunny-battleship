@@ -1,0 +1,11 @@
+.GamePlayerMessage {
+    background-color: #ffed00;
+    width: 10vw;
+    display: flex;
+    border: 5px solid black;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    left: 60%;
+    margin-top: 3.5%;
+}

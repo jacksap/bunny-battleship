@@ -1,6 +1,8 @@
 import React from 'react';
 import GardenGrid from '../GardenGrid/GardenGrid';
 import SnackGrid from '../SnackGrid/SnackGrid';
+import GameMessage from '../GameMessage/GameMessage';
+
 import './GameGrids.css'
 
 const GameGrids = (props) => {
@@ -19,6 +21,7 @@ const GameGrids = (props) => {
                     snackAttempt={props.snackAttempt}
                 />
             </div>
+            <GameMessage game={props.game} user={props.user}/>
         </div>;
     return (
         message,
