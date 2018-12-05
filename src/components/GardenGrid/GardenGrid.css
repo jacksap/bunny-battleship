@@ -49,3 +49,15 @@
     margin: 1% auto;
     display: flex;
 }
+#GardenGrid-dot-hit{
+    background-image: url('/static/images/miffyhit.png');
+    background-size: cover;
+}
+#GardenGrid-dot-miss{
+    background-color: rgba(209, 210, 214, 0.4) !important;
+}
+#GardenGrid-dot-harvested{
+    background-image: url('/static/images/miffyharvested.png');
+    background-size: cover;
+    
+}

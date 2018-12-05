@@ -13,10 +13,10 @@ const GardenGrid = (props) => {
             return (
                <td
                 className={props.grid[rowIdx][colIdx].veggie ? `GardenGrid${props.grid[rowIdx][colIdx].veggie}` : 'GardenTD'}
+                id={`GardenGrid-dot${cell.harvested ? '-harvested' : ''}${cell.hit ? '-hit' : ''}${cell.miss ? '-miss' : ''}`} 
                 key={`${rowIdx}${colIdx}`}
               >
                 <div
-                // className={`GardenGrid-dot${cell.harvested ? ' GardenGrid-harvested' : ''}${cell.hit ? ' GardenGrid-hit' : ''}${cell.miss ? ' GardenGrid-miss' : ''}`} 
                 />
               </td>
             );

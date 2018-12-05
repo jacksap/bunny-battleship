@@ -5,12 +5,13 @@
     bottom: 1.75vh;
     text-transform: capitalize;
     margin-block-start: unset;
+    color: #458400;
 }
 .NavLink {
     float: right;
     position: relative;
     bottom: 1vh;
-    font-size: 1.2Em;
+    font-size: 1.2em;
     display: inline;
     justify-content: center;
 }
