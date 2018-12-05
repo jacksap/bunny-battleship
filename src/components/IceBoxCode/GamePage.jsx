@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './GamePage.css';
 import gameService from '../../utils/gameService';
-import NavBar from '../../components/NavBar/NavBar';
 import GameScreen from '../../components/GameScreen/GameScreen'
 
 class GamePage extends Component {
@@ -107,7 +106,6 @@ class GamePage extends Component {
         if (!this.props.game) return null;
     return (
         <div>
-            <NavBar user={this.props.user} handleLogout={this.props.handleLogout} />
             <GameScreen myGameData={this.props.user ? 
               (this.props.user._id === this.props.game.players ? this.props.game.players[0] : null)
               :

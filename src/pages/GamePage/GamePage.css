@@ -1,7 +1,7 @@
 .GamePage {
     display: flex;
     justify-content: center;
-    margin: 15vh auto;
+    margin: 0 auto;
 }
 .onOpen {
     background-color: #ffed00;
@@ -31,7 +31,8 @@ a.onOpenLink {
     position: relative;
     top: 8.5vh;
     margin: 0 auto;
-    width: 10vw;
+    max-width: 22vw;
+    width: auto;
 }
 button.onOpenLink {
     font-family: 'Patrick Hand', cursive;

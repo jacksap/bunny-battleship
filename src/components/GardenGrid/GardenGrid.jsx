@@ -3,7 +3,7 @@ import './GardenGrid.css';
 import socket from '../../utils/socket';
 
 const GardenGrid = (props) => {
-    let gameStart = props.gameStatus === 'playMode' ? <p>Good Luck</p> : <button onClick={() => socket.emit('veggiePlanting')}>Plant Veggies</button> ;
+    let gameStart = props.game.gameStatus === 'playMode' ? '' : <button className='PlantButton' onClick={() => socket.emit('veggiePlanting')}>Plant Veggies</button> ;
     let tableBody = props.grid.slice()
     tableBody = tableBody.map((row, rowIdx) => {
       return (
@@ -12,10 +12,12 @@ const GardenGrid = (props) => {
           row.map((cell, colIdx) => {
             return (
                <td
-                className='GardenTD'
+                className={props.grid[rowIdx][colIdx].veggie ? `GardenGrid${props.grid[rowIdx][colIdx].veggie}` : 'GardenTD'}
                 key={`${rowIdx}${colIdx}`}
               >
-                <div className={`GardenGrid-dot${cell.harvested ? ' GardenGrid-harvested' : ''}${cell.hit ? ' GardenGrid-hit' : ''}${cell.miss ? ' GardenGrid-miss' : ''}`} />
+                <div
+                // className={`GardenGrid-dot${cell.harvested ? ' GardenGrid-harvested' : ''}${cell.hit ? ' GardenGrid-hit' : ''}${cell.miss ? ' GardenGrid-miss' : ''}`} 
+                />
               </td>
             );
           })

@@ -112,11 +112,13 @@ class App extends Component {
 
     return (
       <div className="App">
+          <div className='AppNavBar'>
           <NavBar 
             game={this.state.game} 
             user={this.state.user} 
             handleLogout={this.handleLogout}
           />
+          </div>
           <Switch>
           <Route exact path='/' render={() =>
           page

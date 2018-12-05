@@ -17,7 +17,8 @@ const NavBar = (props) => {
     :
     <div>
       <h2 className='NavName'>GARDEN GROWER</h2>
-    <div className='NavBar'>
+      <div className='NavBump'>
+    {/* <div className='NavBar'> */}
       <Link to='/login' className='NavLink'>Log In</Link>
       <span className='NavLink'>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
       <Link to='/signup' className='NavLink'>Sign Up</Link>

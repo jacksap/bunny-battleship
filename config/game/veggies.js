@@ -1,5 +1,5 @@
 module.exports = {
-    'Cucumber': {
+    'Carrot': {
         length: 5,
         hits: 0
       },
@@ -11,11 +11,11 @@ module.exports = {
         length: 3,
         hits: 0
       },
-      'Broccoli': {
+      'Cucumber': {
         length: 3,
         hits: 0
       },
-      'Carrot': {
+      'Broccoli': {
         length: 2,
         hits: 0
       }

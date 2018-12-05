@@ -46,7 +46,6 @@ function checkVeggiePlanting(horizontal, len, row, col, player){
 //places the veggies onto the board 
 function placeVeggieForPlayer(len, row, col, horizontal, player, veg){
     for (let i = 0; i < len; i++) {
-        console.log(len, row, col, horizontal, i)
         if (horizontal) {
             player.grids[0].gardenGrid[row][col + i].veggie = veg; 
         } else {

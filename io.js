@@ -11,6 +11,7 @@ module.exports = {
 
   init: function(httpServer) {
     io = require('socket.io')(httpServer);
+
     io.on('connection', function(socket) {
     
       socket.on('chat', function(chat) {
@@ -68,7 +69,7 @@ module.exports = {
       });
 
       socket.on('veggiePlanting', () => { // veggie name needs to be accessed.
-        let game = games[socket.gameId];
+        var game = games[socket.gameId];
         var player = game.players[0];
         var veggies = player.veggies[0];
         plant.randomVeggiePlanting(game, player, veggies);
@@ -80,32 +81,20 @@ module.exports = {
         game.save();
       });
 
-
-
       socket.on('snackAttempt', ({row, col}) => {  // console.log the first round then it crashes
-        console.log(row, col)      
-        let game = games[socket.gameId];
+        var game = games[socket.gameId];
         console.log(game) // nothing from this one.
         var player = game.players[socket.playerIdx];
-        var veggies = player.veggies[0]
-        console.log(player)
+        var playerVeggies = player.veggies[0]
+        var grid = player.grids[0]
         let snackingBunny,
         opponent;
-        
-        // if (game.currentTurn === 0) { // i have tried a variety of things here
-        //   snackingBunny = game.players[0];
-        //   opponent = game.players[1];
-        // } else {
-        //   snackingBunny = game.players[1];
-        //   opponent = game.players[0];
-        // }
-    
         // Check if the game actually exists & is still going
         if (game && !game.gameOver) {
           // Check if it is the shooting player's turn
           if (game.currentTurn === player.turnNo) {
             // Submit the shooting players shot
-            if (snack.snackAttempt(game, veggies, row, col)) {
+            if (snack.snackAttempt(game, player, playerVeggies, grid, row, col)) {
               // Shot was valid, check for a winner
               if (snack.checkForGameWinner(game)) {
                 game.gameOver = true;
@@ -117,6 +106,9 @@ module.exports = {
             }
           }
         }
+        game.save();
+        socket.gameId = game.id;
+        socket.playerIdx = game.currentTurn;
       });
 
     });

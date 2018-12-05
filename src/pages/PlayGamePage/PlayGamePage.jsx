@@ -27,7 +27,7 @@ class PlayGamePage extends Component {
     render() {
 
         let PlayGamePage = this.props.user ?
-            <div className="PlayGamePage">
+            <div className="PlayGameCode">
                 <div className='onOpen'>
                 <div>
                     <Link onClick={this.props.handleCreateGameClick} to='/' className='onOpenLink'>CREATE GAME</Link>

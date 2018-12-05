@@ -40,38 +40,36 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div>
-      <div >
-        <header className="SignUpHeader">Sign Up</header>
+      <div className='SignupForm'>
+        <header className="SignupHeader">Sign Up</header>
         <form onSubmit={this.handleSubmit} className="SignUpForm">
           <div>
-            <div className="InputForm">
-              <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange('name', e)} />
+            <div>
+              <input className="SignupFormInput" type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange('name', e)} />
             </div>
           </div>
           <div>
-            <div className="InputForm">
-              <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e)} />
+            <div>
+              <input className="SignupFormInput" type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e)} />
             </div>
           </div>
           <div>
-            <div className="InputForm">
-              <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange('password', e)} />
+            <div>
+              <input className="SignupFormInput" type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange('password', e)} />
             </div>
           </div>
           <div>
-            <div className="InputForm">
-              <input type="password" placeholder="Confirm Password" value={this.state.passwordConf} onChange={(e) => this.handleChange('passwordConf', e)} />
+            <div>
+              <input className="SignupFormInput" type="password" placeholder="Confirm Password" value={this.state.passwordConf} onChange={(e) => this.handleChange('passwordConf', e)} />
             </div>
           </div>
           <div>
-            <div className="InputForm">
-              <button disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
+            <div>
+              <button className='ButtonInput' disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
             </div>
           </div>
         </form>
-      </div>
       </div>
     );
   }

@@ -32,26 +32,28 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <header className="LoginHeader">Log In</header>
-        <form onSubmit={this.handleSubmit} className="LoginForm">
+      <div className='LoginForm'>
+        <h1 className="LoginHeader">Log In</h1>
+      <div className='LoginWrapper'>
+        <form onSubmit={this.handleSubmit}>
           <div>
-            <div className="InputForm">
-              <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e)} />
+            <div>
+              <input type="email" placeholder="Email" value={this.state.email} className="InputForm" onChange={(e) => this.handleChange('email', e)} />
             </div>
           </div>
           <div>
             <div className="InputForm">
-              <input type="password" placeholder="Password" value={this.state.pw} onChange={(e) => this.handleChange('pw', e)} />
+              <input type="password" placeholder="Password" value={this.state.pw} className="InputForm" onChange={(e) => this.handleChange('pw', e)} />
             </div>
           </div>
           <div>
-            <div className="InputForm">
-              <button>Log In</button>&nbsp;&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+            <div className="LoginFlex">
+              <button className="ButtonInput">Log In</button>&nbsp;&nbsp;&nbsp;
+              <Link to='/' className="LoginSubmit">Cancel</Link>
             </div>
           </div>
         </form>
+      </div>
       </div>
     );
   }

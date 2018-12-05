@@ -1,11 +1,11 @@
 .SnackTable {
-    background-color: white;
-    height: 30vh;
-    width: 20vw;
-    border-spacing: none;
+    height: 300px;
+    width: 300px;
+    border-collapse: collapse;
+
 }
 
 .SnackGridTD {
-    border: 1px solid black;
+    border: 1px solid #ff5a1e;
 
 }

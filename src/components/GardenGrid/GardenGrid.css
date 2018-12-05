@@ -1,22 +1,51 @@
 .GardenTable {
-    /* background-color: white; */
     height: 300px;
     width: 300px;
-}
-table {
-    border-spacing: none;
-
+    border-collapse: collapse;
+    margin-right: 2%;
 }
 .GardenTD {
     border: 1px solid #ffec00;
 }
-.GTHeader {
-    color: white;
-    display: flex;
+.GardenGridTomato {
+    border: 1px solid #ffec00;
+    background-color: red;
+    background-image: url('/static/images/tomato.png');
+    background-size: cover;
 }
-.GardenGrid {
+.GardenGridBroccoli {
+    border: 1px solid #ffec00;
+    background-color: darkgreen;
+    background-image:url('/static/images/broccoli.png');
+    background-size: cover;
+}
+.GardenGridCucumber {
+    border: 1px solid #ffec00;
+    background-color: lightgreen;
+    background-image: url('/static/images/cucumber.png');
+    background-size: cover;
+    
+}
+.GardenGridOnion{
+    border: 1px solid #ffec00;
+    background-color: antiquewhite;
+    background-image: url('/static/images/onion.png');
+    background-size: cover;
+}
+.GardenGridCarrot{
+    border: 1px solid #ffec00;
+    background-color: orange;
+    background-image: url('/static/images/carrot.png');
+    background-size: cover;
+}
+.PlantButton{
+    font-family: 'Patrick Hand', cursive;
+    text-decoration: none;
+    font-size: 1em;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    margin: 1% auto;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
 }
