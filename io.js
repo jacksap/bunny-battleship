@@ -72,10 +72,10 @@ module.exports = {
         var game = games[socket.gameId];
         var player = game.players[0];
         var veggies = player.veggies[0];
-        plant.randomVeggiePlanting(game, player, veggies);
+        plant.randomVeggiePlanting(player, veggies);
         player = game.players[1];
         veggies = player.veggies[0];
-        plant.randomVeggiePlanting(game, player, veggies);
+        plant.randomVeggiePlanting(player, veggies);
         game.gameStatus = 'playMode';
         io.to(game.id).emit('gameData', game);
         game.save();
@@ -83,34 +83,28 @@ module.exports = {
 
       socket.on('snackAttempt', ({row, col}) => {  // console.log the first round then it crashes
         var game = games[socket.gameId];
-        console.log(game) // nothing from this one.
+        // console.log(game) // nothing from this one.
         var player = game.players[socket.playerIdx];
-        var playerVeggies = player.veggies[0]
-        var grid = player.grids[0]
-        let snackingBunny,
-        opponent;
+        if (player.turnNo === 0) {
+          var opponent = game.players[1]
+        } else {
+          var opponent = game.players[0]
+        }
         // Check if the game actually exists & is still going
         if (game && !game.gameOver) {
+          game = games[socket.gameId];
           // Check if it is the shooting player's turn
           if (game.currentTurn === player.turnNo) {
             // Submit the shooting players shot
-            if (snack.snackAttempt(game, player, playerVeggies, grid, row, col)) {
-              // Shot was valid, check for a winner
-              if (snack.checkForGameWinner(game)) {
-                game.gameOver = true;
-                game.winner = snackingBunny.id;
-              }
-              // switch current turn and send game state to both players
-              game.currentTurn ? game.currentTurn = 0 : game.currentTurn = 1;
-              io.to(game.id).emit('gameData', game);
-            }
+            snack.snackAttempt(player, opponent, row, col); 
+            game.currentTurn ? game.currentTurn = 0 : game.currentTurn = 1;
+            io.to(game.id).emit('gameData', game);
+            game.save();
           }
         }
-        game.save();
-        socket.gameId = game.id;
-        socket.playerIdx = game.currentTurn;
+        // io.to(game.id).emit('gameData', game);
+        // game.save();
       });
-
     });
   },
 

@@ -1,7 +1,7 @@
 const veggies = require('./veggies');
 const grid = require('./grid')
 
-function randomVeggiePlanting(game, player, veggies) {
+function randomVeggiePlanting(player, veggies) {
     //This part randomizes the locations of the veggies 
     // for(let v = 0; v < Object.keys(veggies).length; v++){
     for(var veg in veggies){

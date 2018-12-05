@@ -1,20 +1,10 @@
 const veggies = require('./veggies');
 
-function snackAttempt(game, player, playerVeggies, grid, row, col) {
-    var snackingBunny,
-        opponent;
-
-    if (game.currentTurn === 0) {
-      snackingBunny = game.players[0]; // how am i passing this via socket?
-      opponent = game.players[1];
-    } else {
-      snackingBunny = game.players[1];
-      opponent = game.players[0];
-    }
+function snackAttempt(player, opponent, row, col) {
     var opponentsGrid = opponent.grids[0] && opponent.grids[0].gardenGrid;
     var opponentsTargetedCell = opponentsGrid[row][col];
-    var bunnysGrid = snackingBunny.grids[0] && snackingBunny.grids[0].snackGrid;
-
+    var bunnysGrid = player.grids[0] && player.grids[0].snackGrid;
+    
     // Check if the targeted cell has already been snacked upon
     // Check if there is a veggie in the targeted cell
     // Check if the veggie has already been harvested
@@ -33,7 +23,7 @@ function snackAttempt(game, player, playerVeggies, grid, row, col) {
           // Check if the current shot has harvested the veggie
           if (opponent.veggies[0][veggieName].hits === opponent.veggies[0][veggieName].length) {
             // If the veggie has been harvested update game state to account for that
-            oopponentsTargetedCell.harvested = true; // THIS IS NOT THE CELL!!!!!!!!!!!!!!!!!!!!!! needs to be on gg cell of opponent
+            oopponentsTargetedCell.harvested = true;
             opponentsGrid.forEach((searchRow, rowIdx) => {
               searchRow.forEach((searchCol, colIdx) => {
                 if (opponentsGrid[rowIdx][colIdx].veggie === veggieName) {
@@ -41,17 +31,17 @@ function snackAttempt(game, player, playerVeggies, grid, row, col) {
                   bunnysGrid[rowIdx][colIdx] = 'harvested';
                 }
               })
-            })
+            });
           }
         }
       } else {
-        bunnysGrid[row][col] = 'miss';
-        opponentsTargetedCell.miss = true;
-        // game.player[0] = snackingBunny
-        // game.player[1] = opponent
-      return game;
+        // bunnysGrid[row][col] = 'miss';
+        // opponentsTargetedCell.miss = true;
+        opponent.grids[0].gardenGrid[row][col].miss = true;
+        player.grids[0].snackGrid[row][col] = 'miss';
+      // return game;
       }
-      return true;
+      // return true;
     }
 }
 
