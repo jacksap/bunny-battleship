@@ -67,11 +67,6 @@ class App extends Component {
     socket.emit('snackAttempt', {row, col} );
   }
 
-  veggiePlanting = (veggieName, row, col) => {
-    console.log(this.veggiePlanting)
-    console.log(veggieName, row, col)
-    socket.emit('snackAttempt', {veggieName, row, col} );
-  }
 
 /*---------- Lifecycle Methods ----------*/
 

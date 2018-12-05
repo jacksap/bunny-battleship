@@ -1,17 +1,22 @@
 module.exports = {
     'Cucumber': {
-        length: 5
+        length: 5,
+        hits: 0
       },
       'Tomato': {
-        length: 4
+        length: 4,
+        hits: 0
       },
       'Onion': {
-        length: 3
+        length: 3,
+        hits: 0
       },
       'Broccoli': {
-        length: 3
+        length: 3,
+        hits: 0
       },
       'Carrot': {
-        length: 2
+        length: 2,
+        hits: 0
       }
 }

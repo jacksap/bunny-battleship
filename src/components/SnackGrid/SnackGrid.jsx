@@ -13,6 +13,7 @@ const SnackGrid = (props) => {
               key={`${rowIdx}${colIdx}`}
               data-row={rowIdx}
               data-col={colIdx}
+              className='SnackGridTD'
               onClick={() => props.snackAttempt(rowIdx, colIdx)}
             >
               <div />

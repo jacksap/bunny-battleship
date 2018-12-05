@@ -4,3 +4,8 @@
     width: 20vw;
     border-spacing: none;
 }
+
+.SnackGridTD {
+    border: 1px solid black;
+
+}

@@ -3,52 +3,34 @@ const grid = require('./grid')
 
 function randomVeggiePlanting(game, player, veggies) {
     //This part randomizes the locations of the veggies 
-    for(let v = 0; v < game.player.veggies.length; v++){
-        let fit = false; 
-        while(!fit){
-            let row = Math.floor(Math.random()*10); 
-            let col = Math.floor(Math.random()*10);
-            let horizontal = true; 
-            
-            //The following code saying whether it is placed horizontally or vertically
-            //0 for horizontal
-            //1 for vertical 
-            if(Math.floor(Math.random()*2) == 1){
-                horizontal = false;
-            }
+    // for(let v = 0; v < Object.keys(veggies).length; v++){
+    for(var veg in veggies){
+        var fit = false; 
+        while (!fit) {
+            var row = Math.floor(Math.random()*10); 
+            var col = Math.floor(Math.random()*10);
+            var horizontal = (Math.random() < .5);
 
-            // horizontal = (Math.random() < .5);
-            
-            //The following code makes sure the veggies do not extend beyond the edge of the board	
-            if(horizontal){
-                if(game.player.veggies[v].length + col > 9){
-                    fit = false; 
-                    // do I need to re run
-                }
-            }
-            else{
-                if(game.player.veggies[v].length + row > 9){
-                    fit = false; 
-                    // do I need to re run
-                }
-            }
-            fit = checkVeggiePlanting(horizontal, game.player.veggies[v].length, row, col); 
+            fit = horizontal ?
+                (veggies[veg].length + col < 10) && checkVeggiePlanting(horizontal, veggies[veg].length, row, col, player)
+            :
+                (veggies[veg].length + row < 10) && checkVeggiePlanting(horizontal, veggies[veg].length, row, col, player);
+
         }
-        let len = game.player.veggies[v].length;
-        placeVeggieForPlayer(len, row, col, horizontal);
+        var len = veggies[veg].length;
+        placeVeggieForPlayer(len, row, col, horizontal, player, veg);
     }
 }
 
-function checkVeggiePlanting(horizontal, len, row, col){
+function checkVeggiePlanting(horizontal, len, row, col, player){
     let colOffset = horizontal ? 1 : 0;
     let rowOffset = horizontal ? 0 : 1;
         for(let i = 0; i < len; i++){
             //If a section of the board contains a ship, it's marked with a one
             //thus, if the function detects the section is marked with one, it returns false 
             // I WILL HAVE TO WRITE A VEGGIE NAME CHECK FN like an if else 
-            if(game.player.grids[0].gardenGrid[row + rowOffset][col + colOffset]){
-                return false; 
-            }
+            // this code is causing me issues because it is not checking available spaces... just if the veggie prop is null
+            if  (player.grids[0].gardenGrid[row + rowOffset * i][col + colOffset * i].veggie ) return false;
         }
     
     // else{
@@ -62,14 +44,13 @@ function checkVeggiePlanting(horizontal, len, row, col){
 }
 
 //places the veggies onto the board 
-function placeVeggieForPlayer(len, r, c, horizontal){
-    for(let i = 0; i < len; i++){
-        if(horizontal){
-            game.player.grids[0].gardenGrid[r][c + i] += 1; 
-            // something about the veggie name here - I should maybe check
-        }
-        else{
-            game.player.grids[0].gardenGrid[r + i][c] += 1; 
+function placeVeggieForPlayer(len, row, col, horizontal, player, veg){
+    for (let i = 0; i < len; i++) {
+        console.log(len, row, col, horizontal, i)
+        if (horizontal) {
+            player.grids[0].gardenGrid[row][col + i].veggie = veg; 
+        } else {
+            player.grids[0].gardenGrid[row + i][col].veggie = veg; 
         }
     }
 }

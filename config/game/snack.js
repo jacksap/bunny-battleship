@@ -1,7 +1,7 @@
 const veggies = require('./veggies');
 
-function snackAttempt(game, row, col) {
-    let snackingBunny,
+function snackAttempt(game, veggies, row, col) {
+    var snackingBunny,
         opponent;
 
     if (game.currentTurn === 0) {
@@ -12,9 +12,9 @@ function snackAttempt(game, row, col) {
       opponent = game.players[0];
     }
 
-    let opponentsGrid = opponent.grids[0].gardenGrid;
-    let opponentsTargetedCell = opponentsGrid[row][col];
-    let bunnysGrid = snackingBunny.grids[0].snackGrid;
+    var opponentsGrid = opponent.grids[0].gardenGrid;
+    var opponentsTargetedCell = opponentsGrid[row][col];
+    var bunnysGrid = snackingBunny.grids[0].snackGrid;
 
     // Check if the targeted cell has already been snacked upon
     // Check if there is a veggie in the targeted cell
@@ -23,7 +23,7 @@ function snackAttempt(game, row, col) {
       opponentsTargetedCell.targeted = true;
       if (opponentsTargetedCell.veggie) {
         if (!opponentsTargetedCell.harvested) {
-          let veggieName = opponentsTargetedCell.veggie;
+          var veggieName = opponentsTargetedCell.veggie;
           // Change game state to represent the veggie hit
           opponentsTargetedCell.hit = true;
           opponent.veggies[veggieName].hits += 1; // the Player needs a veggie array.
@@ -53,7 +53,7 @@ function snackAttempt(game, row, col) {
 }
 
   function checkForGameWinner(game) {
-    let snackingBunny, // why is this graying on me...
+    var snackingBunny, // why is this graying on me...
         opponent;
 
     if (game.currentTurn === 0) {
@@ -64,7 +64,7 @@ function snackAttempt(game, row, col) {
       opponent = game.players[0];
     }
 
-    for (let veggie in opponent.veggies) {
+    for (var veggie in opponent.veggies) {
       if (!opponent.veggies[veggie].harvested) {
         return false;
       }

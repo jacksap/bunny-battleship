@@ -1,9 +1,22 @@
 .GardenTable {
-    background-color: white;
-    height: 30vh;
-    width: 20vw;
-    border-spacing: none;
+    /* background-color: white; */
+    height: 300px;
+    width: 300px;
 }
-td {
-    border: 1px solid black;
+table {
+    border-spacing: none;
+
+}
+.GardenTD {
+    border: 1px solid #ffec00;
+}
+.GTHeader {
+    color: white;
+    display: flex;
+}
+.GardenGrid {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
 }

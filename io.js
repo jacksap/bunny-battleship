@@ -46,7 +46,7 @@ module.exports = {
         });
       });
       
-      socket.on('joinGame', function(user, gameCode, turnNo) {
+      socket.on('joinGame', function(user, gameCode) {
         var game = games[gameCode];
         game.players.push({
           playerIdx: 1,
@@ -56,25 +56,26 @@ module.exports = {
           turnNo: 1,
           veggies: veggies
         });
-        // is this where I change game.gameStatus
+        // is this where I change game.gameStatus?
+        // I could call veggie planting here.
         socket.gameId = game.id;
         socket.playerIdx = 1;
-        socket.join(gameCode);
+        socket.join(game.id);
         // initialize veggies
 
         io.to(game.id).emit('gameData', game);
         game.save();
       });
 
-      socket.on('veggiePlanting', ({veggieName, row, col}) => { // veggie name needs to be accessed.
+      socket.on('veggiePlanting', () => { // veggie name needs to be accessed.
         let game = games[socket.gameId];
-        
-        // Check player
-        var player = game.players[socket.playerIdx];
+        var player = game.players[0];
         var veggies = player.veggies[0];
-        if (plant.randomVeggiePlanting(game, player, veggies)) {
-          game.gameStatus = 'playMode';
-        }
+        plant.randomVeggiePlanting(game, player, veggies);
+        player = game.players[1];
+        veggies = player.veggies[0];
+        plant.randomVeggiePlanting(game, player, veggies);
+        game.gameStatus = 'playMode';
         io.to(game.id).emit('gameData', game);
         game.save();
       });
@@ -86,6 +87,7 @@ module.exports = {
         let game = games[socket.gameId];
         console.log(game) // nothing from this one.
         var player = game.players[socket.playerIdx];
+        var veggies = player.veggies[0]
         console.log(player)
         let snackingBunny,
         opponent;
@@ -103,7 +105,7 @@ module.exports = {
           // Check if it is the shooting player's turn
           if (game.currentTurn === player.turnNo) {
             // Submit the shooting players shot
-            if (snack.snackAttempt(game, row, col)) {
+            if (snack.snackAttempt(game, veggies, row, col)) {
               // Shot was valid, check for a winner
               if (snack.checkForGameWinner(game)) {
                 game.gameOver = true;
