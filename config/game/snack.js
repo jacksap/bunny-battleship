@@ -19,11 +19,14 @@ function snackAttempt(player, opponent, row, col) {
           console.log(opponent.veggies[0]);
           opponent.veggies[0][veggieName].hits += 1; // the Player needs a veggie array.
           bunnysGrid[row][col] = 'hit';
-          
+          // var opponentsTargetedCell = opponentsGrid[row][col];
+          // var opponentsGrid = opponent.grids[0] && opponent.grids[0].gardenGrid;
           // Check if the current shot has harvested the veggie
           if (opponent.veggies[0][veggieName].hits === opponent.veggies[0][veggieName].length) {
+            // var opponentsGrid = opponent.grids[0] && opponent.grids[0].gardenGrid;
+            // var opponentsTargetedCell = opponentsGrid[row][col];
             // If the veggie has been harvested update game state to account for that
-            oopponentsTargetedCell.harvested = true;
+            opponentsTargetedCell.harvested = true;
             opponentsGrid.forEach((searchRow, rowIdx) => {
               searchRow.forEach((searchCol, colIdx) => {
                 if (opponentsGrid[rowIdx][colIdx].veggie === veggieName) {

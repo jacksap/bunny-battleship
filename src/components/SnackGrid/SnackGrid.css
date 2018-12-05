@@ -9,3 +9,17 @@
     border: 1px solid #ff5a1e;
 
 }
+.SnackGridhit {
+    border: 1px solid #ff5a1e;
+    background-image: url('/static/images/miffyhit.png');
+    background-size: cover;
+}
+.SnackGridmiss {
+    border: 1px solid #ff5a1e;
+    background-color: rgba(209, 210, 214, 0.4)
+}
+.SnackGridharvested {
+    border: 1px solid #ff5a1e;
+    background-image: url('/static/images/miffyharvested.png');
+    background-size: cover;
+}
