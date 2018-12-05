@@ -47,8 +47,8 @@ function snackAttempt(game, player, playerVeggies, grid, row, col) {
       } else {
         bunnysGrid[row][col] = 'miss';
         opponentsTargetedCell.miss = true;
-        game.player[0] = snackingBunny
-        game.player[1] = opponent
+        // game.player[0] = snackingBunny
+        // game.player[1] = opponent
       return game;
       }
       return true;
