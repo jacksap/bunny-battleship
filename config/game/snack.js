@@ -17,14 +17,10 @@ function snackAttempt(player, opponent, row, col) {
           opponentsTargetedCell.hit = true;
           console.log(opponent.veggies);
           console.log(opponent.veggies[0]);
-          opponent.veggies[0][veggieName].hits += 1; // the Player needs a veggie array.
+          opponent.veggies[0][veggieName].hits += 1; 
           bunnysGrid[row][col] = 'hit';
-          // var opponentsTargetedCell = opponentsGrid[row][col];
-          // var opponentsGrid = opponent.grids[0] && opponent.grids[0].gardenGrid;
           // Check if the current shot has harvested the veggie
           if (opponent.veggies[0][veggieName].hits === opponent.veggies[0][veggieName].length) {
-            // var opponentsGrid = opponent.grids[0] && opponent.grids[0].gardenGrid;
-            // var opponentsTargetedCell = opponentsGrid[row][col];
             // If the veggie has been harvested update game state to account for that
             opponentsTargetedCell.harvested = true;
             opponentsGrid.forEach((searchRow, rowIdx) => {
@@ -38,18 +34,14 @@ function snackAttempt(player, opponent, row, col) {
           }
         }
       } else {
-        // bunnysGrid[row][col] = 'miss';
-        // opponentsTargetedCell.miss = true;
         opponent.grids[0].gardenGrid[row][col].miss = true;
         player.grids[0].snackGrid[row][col] = 'miss';
-      // return game;
       }
-      // return true;
     }
 }
 
   function checkForGameWinner(game) {
-    var snackingBunny, // why is this graying on me...
+    var snackingBunny,
         opponent;
 
     if (game.currentTurn === 0) {
