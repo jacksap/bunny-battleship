@@ -16,7 +16,7 @@ function snackAttempt(player, opponent, row, col) {
           // Change game state to represent the veggie hit
           opponentsTargetedCell.hit = true;
           // console.log(opponent.veggies);
-          console.log(opponent.veggies[0]);
+          // console.log(opponent.veggies[0]);
           opponent.veggies[0][veggieName].hits += 1; 
           bunnysGrid[row][col] = 'hit';
           // Check if the current shot has harvested the veggie
