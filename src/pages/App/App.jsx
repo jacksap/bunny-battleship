@@ -63,7 +63,7 @@ class App extends Component {
   }
   
   snackAttempt = (row, col) => {
-    console.log(row, col)
+    // console.log(row, col)
     socket.emit('snackAttempt', {row, col} );
   }
 
